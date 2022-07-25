@@ -17,7 +17,7 @@ export default createStore({
   },
   getters: {
     isLogged: (state) => () => {
-      let token = getCookie("logged_in")
+      let token = getCookie("access_token")
       if(token){
         state.isLogged = true
       }else{
