@@ -1,11 +1,14 @@
 <template>
-  <div class="container">
-    <div class="social-auth">
-      <!-- Google OAuth -->
-      <a :href="getGoogleUrl()" class="auth-btn google-auth">
-        <img src="../assets/google.svg" alt="Google Logo" />
-        <span>Google</span>
-      </a>
+  <div class="flex justify-center items-center h-full">
+    <div class="glass w-2/5 p-10 flex justify-center flex-col items-center h-1/2">
+      <h1 class="text-black font-bold text-3xl py-5" title="">Login</h1>
+      <h2 class="text-black text-xl">With social media account</h2>
+      <div class="w-3/5 p-10">
+        <a :href="getGoogleUrl()" class="auth-btn google-auth">
+          <img src="../assets/google.svg" alt="Google Logo" />
+          <span>Google</span>
+        </a>
+      </div>
     </div>
   </div>
 </template>
@@ -31,48 +34,26 @@ export default {
       const qs = new URLSearchParams(options);
       return `${rootUrl}?${qs.toString()}`;
     },
-    
   },
 };
 </script>
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-html {
-  font-size: 62.5%;
-}
-
-body {
-  font-family: Roboto, sans-serif;
-  color: #222;
-  font-size: 1.6rem;
-}
-
-.container {
-  background-color: #2363eb;
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .social-auth {
   max-width: 27rem;
   width: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
+  
 }
-
+.glass {
+  /* From https://css.glass */
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(4.3px);
+  -webkit-backdrop-filter: blur(4.3px);
+}
 .auth-btn {
   background-color: #fff;
   border-radius: 5px;
@@ -82,14 +63,16 @@ body {
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease-in-out;
+  border: 1px solid #e7e4e4;
 }
 
 .auth-btn img {
-  height: 4rem;
+  height: 2rem;
   margin-right: 1rem;
 }
 .auth-btn span {
-  font-size: 1.8rem;
+  font-size: 1.2  rem;
+  font-weight: bold;
 }
 
 .auth-btn:hover {
