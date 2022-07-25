@@ -28,8 +28,26 @@ const router = createRouter({
   history,
   routes,
 });
-
+function getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i <ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
 router.beforeEach((to, from) => {
+  const accessToken = getCookie('access_token');
+  if(accessToken){
+      store.commit('setIsLogged', true)
+  } 
   const isAuthenticated =  store.getters.isLogged();  
   if (
     // make sure the user is authenticated

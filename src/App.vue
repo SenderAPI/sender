@@ -3,6 +3,7 @@
     <nav>
       <router-link to="/" v-if="isLogged">Home</router-link>&nbsp;
       <router-link to="/login" v-if="!isLogged">Login</router-link>
+      <button @click="logout()" v-if="isLogged">logout</button>
     </nav>
     <router-view />
   </div>
@@ -10,19 +11,22 @@
 
 <script>
 import store from "./store/store.js"
+import router from "./router.js"
 export default {
   name: "App",
   data(){
-    return {
-      isLogged: false,
+    return {}
+  },
+  methods: {
+    logout(){
+      document.cookie = 'access_token' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+      this.$store.commit('setIsLogged', false)
+      router.push({name: "Login"});
     }
   },
   computed: {
-    isLogged:{
-      get: function(){
-
-        return store.getters.isLogged()
-      }
+    isLogged(){
+      return store.getters.isLogged()
     }
   },
 };

@@ -31,8 +31,6 @@ export default {
       const qs = new URLSearchParams(options);
       return `${rootUrl}?${qs.toString()}`;
     },
-  },
-  mounted() {
     
   },
 };
