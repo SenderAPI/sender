@@ -35,6 +35,13 @@ export default {
       return `${rootUrl}?${qs.toString()}`;
     },
   },
+  mounted() {
+    if(this.$route.query.token){
+      document.cookie = `access_token=${this.$route.query.token}`;
+      location.reload();
+    }
+
+  },
 };
 </script>
 <style>

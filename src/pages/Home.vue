@@ -13,7 +13,7 @@ export default {
         }
     },
     mounted() {
-        this.axios.get('http://localhost:8000/api/v1/me').then(({data}) => {
+        this.axios.get('https://auth.backsoul.xyz/api/v1/me').then(({data}) => {
             this.$store.commit("setUser",data.data);
         })
     },
