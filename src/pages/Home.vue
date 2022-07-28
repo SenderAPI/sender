@@ -13,9 +13,7 @@ export default {
         }
     },
     mounted() {
-        this.axios.get('https://auth.backsoul.xyz/api/v1/me').then(({data}) => {
-            this.$store.commit("setUser",data.data);
-        })
+        this.$store.dispatch("me");
     },
 }
 </script>
