@@ -1,9 +1,11 @@
 <template>
   <div class="flex justify-center items-center h-full">
-    <div class="glass w-2/5 p-10 flex justify-center flex-col items-center h-1/2">
+    <div
+      class="glass xl:w-2/5 md:w-3/5 sm:w-4/5 w-4/5 p-10 flex justify-center flex-col items-center h-1/2"
+    >
       <h1 class="text-black font-bold text-3xl py-5" title="">Login</h1>
       <h2 class="text-black text-xl">With social media account</h2>
-      <div class="w-3/5 p-10">
+      <div class="xl:w-3/5 md:w-3/5 sm:w-4/5 w-full p-10">
         <a :href="getGoogleUrl()" class="auth-btn google-auth">
           <img src="../assets/google.svg" alt="Google Logo" />
           <span>Google</span>
@@ -36,11 +38,10 @@ export default {
     },
   },
   mounted() {
-    if(this.$route.query.token){
+    if (this.$route.query.token) {
       document.cookie = `access_token=${this.$route.query.token}`;
       location.reload();
     }
-
   },
 };
 </script>
@@ -51,7 +52,6 @@ export default {
   display: flex;
   align-items: center;
   flex-direction: column;
-  
 }
 .glass {
   /* From https://css.glass */
@@ -78,7 +78,7 @@ export default {
   margin-right: 1rem;
 }
 .auth-btn span {
-  font-size: 1.2  rem;
+  font-size: 1.2 rem;
   font-weight: bold;
 }
 

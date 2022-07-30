@@ -31,7 +31,7 @@ export default createStore({
         data = JSON.parse(data.result).data
         commit("setUser", data);
       } catch (error) {
-        console.log(error)
+        console.log(error.response.status)
       }
     }
   },
@@ -41,7 +41,22 @@ export default createStore({
   },
 })
 
-
+axios.interceptors.response.use(
+  response => response,
+  error => {
+    const {
+      status
+    } = error.response;
+    if (status === 401) {
+      if (error.response.status === 401) {
+        console.log(error.response)
+        document.cookie = 'access_token=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        window.location = "/login";
+      }
+    }
+    return Promise.reject(error);
+  }
+);
 
 // setting axios 
 axios.interceptors.request.use(request => {
@@ -53,7 +68,8 @@ axios.interceptors.request.use(request => {
   return request;
 });
 
-axios.defaults.baseURL = import.meta.env.VITE_BASE_URL
+axios.defaults.baseURL =
+  import.meta.env.VITE_BASE_URL
 
 function getCookie(cname) {
   var name = cname + "=";
