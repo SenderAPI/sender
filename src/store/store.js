@@ -8,7 +8,8 @@ import axios from 'axios'
 export default createStore({
   state: {
     isLogged: false,
-    user: null
+    user: null,
+    posts: []
   },
   mutations: {
     setIsLogged(state, py) {
@@ -16,7 +17,10 @@ export default createStore({
     },
     setUser(state, user) {
       state.user = user;
-    }
+    },
+    setPosts(state, posts) {
+      state.posts = posts;
+    },
   },
   actions: {
     async me({
@@ -33,11 +37,41 @@ export default createStore({
       } catch (error) {
         console.log(error.response.status)
       }
-    }
+    },
+    async createPost(store, payload) {
+      try {
+        let data = await axios.post('/posts/create', {
+          payload: {
+            content: payload
+          }
+        })
+        if (data.status === 200) {
+          window.location = "/";
+        }
+      } catch (error) {
+        console.log(error.response.status)
+      }
+    },
+    async getPosts({
+      commit
+    }) {
+      try {
+        let {
+          data
+        } = await axios.post('/posts/obtain-posts', {
+          payload: {}
+        })
+        data = JSON.parse(data.result)
+        commit("setPosts", data);
+      } catch (error) {
+        console.log(error.response.status)
+      }
+    },
   },
   getters: {
     isLogged: (state) => () => state.isLogged,
-    user: (state) => () => state.user
+    user: (state) => () => state.user,
+    posts: (state) => () => state.posts,
   },
 })
 

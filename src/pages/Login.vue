@@ -1,11 +1,11 @@
 <template>
   <div class="flex justify-center items-center h-full">
     <div
-      class="glass xl:w-2/5 md:w-3/5 sm:w-4/5 w-4/5 p-10 flex justify-center flex-col items-center h-1/2"
+      class="glass xl:w-2/5 md:w-3/5 sm:w-4/5 w-11/12 items-center flex justify-center flex-col items-center h-3/5"
     >
       <h1 class="text-black font-bold text-3xl py-5" title="">Login</h1>
       <h2 class="text-black text-xl">With social media account</h2>
-      <div class="xl:w-3/5 md:w-3/5 sm:w-4/5 w-full p-10">
+      <div class="xl:w-3/5 md:w-3/5 sm:w-11/12 w-full p-10">
         <a :href="getGoogleUrl()" class="auth-btn google-auth">
           <img src="../assets/google.svg" alt="Google Logo" />
           <span>Google</span>

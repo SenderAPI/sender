@@ -4,22 +4,35 @@ import {
 } from "vue-router";
 import Home from "./pages/Home.vue";
 import Login from "./pages/Login.vue";
+import Profile from "./pages/Profile.vue";
+import CreatePost from "./pages/CreatePost.vue";
 import store from './store/store'
 
 const routes = [{
+    path: "/login",
+    name: "Login",
+    component: Login,
+    beforeEnter: (to, from) => {
+      const isAuthenticated = store.getters.isLogged();
+      if (isAuthenticated) return '/'
+    }
+  },
+  {
     path: "/",
     name: "Home",
     component: Home
   },
   {
-    path: "/login",
-    name: "Login",
-    component: Login,
-    beforeEnter: (to,from) => {
-      const isAuthenticated =  store.getters.isLogged();  
-      if (isAuthenticated) return '/'
-    }
+    path: "/me",
+    name: "Profile",
+    component: Profile
   },
+  {
+    path: "/create-post",
+    name: "CreatePost",
+    component: CreatePost
+  },
+
 ];
 
 const history = createWebHistory();
@@ -28,11 +41,12 @@ const router = createRouter({
   history,
   routes,
 });
+
 function getCookie(cname) {
   var name = cname + "=";
   var decodedCookie = decodeURIComponent(document.cookie);
   var ca = decodedCookie.split(';');
-  for(var i = 0; i <ca.length; i++) {
+  for (var i = 0; i < ca.length; i++) {
     var c = ca[i];
     while (c.charAt(0) == ' ') {
       c = c.substring(1);
@@ -45,10 +59,11 @@ function getCookie(cname) {
 }
 router.beforeEach((to, from) => {
   const accessToken = getCookie('access_token');
-  if(accessToken){
-      store.commit('setIsLogged', true)
-  } 
-  const isAuthenticated =  store.getters.isLogged();  
+  if (accessToken) {
+    store.commit('setIsLogged', true)
+    store.dispatch("me");
+  }
+  const isAuthenticated = store.getters.isLogged();
   if (
     // make sure the user is authenticated
     !isAuthenticated &&
@@ -56,7 +71,9 @@ router.beforeEach((to, from) => {
     to.name !== 'Login'
   ) {
     // redirect the user to the login page
-    return { name: 'Login' }
+    return {
+      name: 'Login'
+    }
   }
 })
 
