@@ -35,7 +35,7 @@ export default createStore({
         data = JSON.parse(data.result).data
         commit("setUser", data);
       } catch (error) {
-        console.log(error.response.status)
+        console.log(error)
       }
     },
     async createPost(store, payload) {
@@ -49,7 +49,7 @@ export default createStore({
           window.location = "/";
         }
       } catch (error) {
-        console.log(error.response.status)
+        console.log(error)
       }
     },
     async getPosts({
