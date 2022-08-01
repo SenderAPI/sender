@@ -1,3 +1,3 @@
 <template>
-  <div>hola</div>
+  <div>project in progress</div>
 </template>
