@@ -171,7 +171,6 @@ export default {
       }
     },
     toggleDropdown(name) {
-      console.log("toggleDropdown: " + name);
       this.dropdownName = name;
       switch (name) {
         case "dropdown-notification":
