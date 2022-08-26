@@ -13,7 +13,7 @@
             >Social</span
           >
         </div>
-        <div class="flex gap-4 items-center">
+        <div class="flex gap-4 items-center" v-if="user?.Picture">
           <div @click="toggleDropdown('dropdown-notification')">
             <icon-bell
               style="font-size: 1.5em"
