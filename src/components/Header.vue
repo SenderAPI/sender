@@ -2,7 +2,7 @@
   <header>
     <nav class="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
       <div class="flex flex-wrap justify-between items-center mx-auto w-full">
-        <div class="flex items-center" @click="this.$router.push({ name: 'Home' })">
+        <div class="flex items-center" @click="router.push({ name: 'Home' })">
           <img
             src="https://avatars.githubusercontent.com/u/65988584?s=400&u=0c04476b6821b4dda1d1a677758f4ff32a241f9a&v=4"
             class="mr-3 h-6 sm:h-9 rounded-full"
@@ -91,7 +91,7 @@
                   role="menuitem"
                   tabindex="-1"
                   id="menu-item-3"
-                  @click="this.$router.push({ name: 'Profile' })"
+                  @click="router.push({ name: 'Profile' })"
                 >
                   My Profile
                 </button>
