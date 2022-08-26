@@ -1,7 +1,7 @@
 <template>
   <div>
     <ComponentHeader style="position: absolute; top: 0; left: 0; right: 0" />
-    <div class="bg-slate-200" style="height: 97vh; margin-top: 6rem">
+    <div class="bg-slate-200" style="height: 97vh; padding-top: 6rem">
       <router-view />
       <div class="bg-slate-200 flex justify-center">
         <h2>@Backsoul</h2>
