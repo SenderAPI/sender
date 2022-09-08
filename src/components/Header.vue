@@ -1,6 +1,6 @@
 <template>
   <header>
-    <nav class="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
+    <nav class="bg-primary px-4 lg:px-6 py-2.5">
       <div class="flex flex-wrap justify-between items-center mx-auto w-full">
         <div class="flex items-center" @click="router.push({ name: 'Home' })">
           <img
@@ -10,10 +10,15 @@
           />
           <span
             class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"
-            >Social</span
+            >Finance</span
           >
         </div>
+
         <div class="flex gap-4 items-center" v-if="user?.Picture">
+          <div class="flex text-white gap-10">
+            <p>Reporte</p>
+            <p>Proyeccion</p>
+          </div>
           <div @click="toggleDropdown('dropdown-notification')">
             <icon-bell
               style="font-size: 1.5em"

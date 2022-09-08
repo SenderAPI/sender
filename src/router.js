@@ -5,7 +5,6 @@ import {
 import Home from "./pages/Home.vue";
 import Login from "./pages/Login.vue";
 import Profile from "./pages/Profile.vue";
-import CreatePost from "./pages/CreatePost.vue";
 import store from './store/store'
 
 const routes = [{
@@ -27,12 +26,6 @@ const routes = [{
     name: "Profile",
     component: Profile
   },
-  {
-    path: "/create-post",
-    name: "CreatePost",
-    component: CreatePost
-  },
-
 ];
 
 const history = createWebHistory();
