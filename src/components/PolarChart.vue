@@ -29,6 +29,7 @@ export default {
         datasets: [
           {
             fill: "start",
+            hoverBackgroundColor: "#fff",
             backgroundColor: "#06d6a0",
             borderWidth: 0,
             hidden: false,

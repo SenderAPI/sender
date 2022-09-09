@@ -3,7 +3,9 @@
     <ComponentHeader style="position: absolute; top: 0; left: 0; right: 0" />
     <div style="height: 100vh; padding-top: 3rem" class="container-scroll">
       <router-view />
+      <p class="text-white p-10">@Backsoul copyright 2022</p>
     </div>
+    <div></div>
   </div>
 </template>
 

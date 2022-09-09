@@ -1,6 +1,6 @@
 <template>
   <div class="mt-10 mx-5">
-    <div class="flex justify-between w-full flex-col xl:flex-row xl:gap-12">
+    <div class="flex justify-between w-full flex-col xl:flex-row xl:gap-0">
       <div class="w-full grid xl:grid-cols-2 grid-cols-1 gap-x-5 gap-y-5">
         <div class="flex flex-col gap-5 h-auto" style="height: fit-content">
           <div style="height: fit-content">
@@ -15,10 +15,7 @@
               :text="'Egresos'"
             />
           </div>
-
-          <div style="height: fit-content">
-            <PolarChart class="animation-card" />
-          </div>
+          <Categories />
         </div>
 
         <div class="flex flex-col" style="height: fit-content">
@@ -42,9 +39,9 @@
       </div>
 
       <div>
-        <h2 class="font-bold text-xl text-left my-5 text-white">Transacciones</h2>
+        <h2 class="font-bold text-xl text-center text-white">Historial transacciones</h2>
         <Transactions />
-        <h2 class="font-bold text-xl text-left my-5 text-white">Pagos programados</h2>
+        <h2 class="font-bold text-xl text-center mt-5 text-white">Pagos programados</h2>
         <Transactions />
       </div>
     </div>
@@ -57,6 +54,8 @@ import IconBell from "~icons/mdi/bell";
 import CircleChart from "../components/CircleChart.vue";
 import PolarChart from "../components/PolarChart.vue";
 import BarChart from "../components/BarChart.vue";
+import Category from "../components/Category.vue";
+import Categories from "../components/Categories.vue";
 </script>
 
 <script>
@@ -111,6 +110,6 @@ export default {
 .animation-card:hover {
   transform: scale(1.05);
   transition: 0.5s all;
-  box-shadow: 0px 0px 14px -11px white;
+  box-shadow: 0px 0px 14px -5px #111e30;
 }
 </style>

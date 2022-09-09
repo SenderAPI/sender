@@ -23,7 +23,8 @@ module.exports = {
         secondary: "#edf2f4",
         dark: "#1a2e4b",
         danger: "#e63946",
-        success: "#06d6a0"
+        success: "#06d6a0",
+        light: "#233d62"
       }
     },
 

@@ -3,7 +3,7 @@
     class="bg-dark rounded-md flex justify-between items-center animation-card h-full w-full p-5"
   >
     <icon-bell style="font-size: 2.5rem" class="text-white" id="dropdown-notification" />
-    <p style="font-size: 0.9rem; font-weight: 200" class="px-10 text-white">
+    <p style="font-size: 0.7rem; font-weight: 200" class="px-10 text-white">
       Descripcion para la transaccion
     </p>
     <h1 class="text-danger text-xs font-bold">$100000</h1>

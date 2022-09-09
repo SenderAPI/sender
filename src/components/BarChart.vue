@@ -43,6 +43,7 @@ export default {
             backgroundColor: this.color,
             borderWidth: 0,
             hidden: false,
+            hoverBackgroundColor: "#fff",
             data: [100000, 12000, 12350, 15570, 18220, 1710, 160],
           },
         ],

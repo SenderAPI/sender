@@ -36,8 +36,9 @@ export default {
           {
             fill: "start",
             backgroundColor: "#e63946",
-            borderWidth: 0,
-            hidden: false,
+            borderWidth: 1.5,
+            hoverOffset: 2,
+            hoverBackgroundColor: "#fff",
             data: [100000, 12000, 12350, 15570, 18220, 1710, 160],
           },
         ],
