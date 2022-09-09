@@ -4,15 +4,16 @@
       <div class="w-full grid xl:grid-cols-2 grid-cols-1 gap-x-5 gap-y-5">
         <div class="flex flex-col gap-5 h-auto" style="height: fit-content">
           <div style="height: fit-content">
+            <Chart class="animation-card" :text="'Total'" />
+          </div>
+
+          <div style="height: fit-content">
             <BarChart
               class="animation-card"
               :color="'#e63946'"
               :id="'expense'"
               :text="'Egresos'"
             />
-          </div>
-          <div style="height: fit-content">
-            <Chart class="animation-card" :text="'Total'" />
           </div>
           <Categories />
         </div>

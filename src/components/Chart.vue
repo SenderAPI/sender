@@ -141,6 +141,7 @@ export default {
   border-radius: 1rem;
   width: 100%;
   height: 100%;
+  min-height: 10rem;
   padding: 1rem;
 }
 </style>
