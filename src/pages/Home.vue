@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-10 mx-10">
+  <div class="mt-10 mx-5">
     <div class="flex justify-between w-full flex-col xl:flex-row xl:gap-12">
       <div class="w-full grid xl:grid-cols-2 grid-cols-1 gap-x-5 gap-y-5">
         <div class="flex flex-col gap-5 h-auto" style="height: fit-content">
