@@ -1,17 +1,23 @@
 <template>
-  <div class="wrapper">
-    <canvas id="barExpense"></canvas>
+  <div
+    class="animation-card mt-5 flex justify-center"
+    style="width: fit-content; height: fit-content"
+  >
+    <canvas :id="id" class="circle"></canvas>
   </div>
 </template>
 <script>
 export default {
+  props: {
+    id: String,
+  },
   mounted() {
-    var ctx = document.getElementById("barExpense").getContext("2d");
+    var ctx = document.getElementById(this.id).getContext("2d");
 
     var gradientStroke = ctx.createLinearGradient(500, 0, 100, 0);
 
     let chart = new Chart(ctx, {
-      type: "bar",
+      type: "doughnut",
       data: {
         labels: [
           "ENERO",
@@ -29,7 +35,7 @@ export default {
         datasets: [
           {
             fill: "start",
-            backgroundColor: "#06d6a0",
+            backgroundColor: "#e63946",
             borderWidth: 0,
             hidden: false,
             data: [100000, 12000, 12350, 15570, 18220, 1710, 160],
@@ -42,7 +48,7 @@ export default {
             display: false,
           },
           tooltip: {
-            backgroundColor: "#06d6a0",
+            backgroundColor: "#e63946",
             titleFont: {
               weight: "bold",
               size: 12,
@@ -57,11 +63,10 @@ export default {
               },
               labelColor: function (context) {
                 return {
-                  borderRadius: 5,
-                  backgroundColor: "#06d6a0",
-                  borderColor: "#06d6a0",
-                  borderDash: 0,
-                  borderWidth: 5,
+                  borderRadius: 10,
+                  backgroundColor: "#fff",
+                  borderColor: "#fff",
+                  borderWidth: 0.1,
                 };
               },
               labelTextColor: function (context) {
@@ -73,6 +78,7 @@ export default {
         tension: 0.4,
         scales: {
           x: {
+            display: false,
             ticks: {
               font: {
                 size: 10,
@@ -85,6 +91,7 @@ export default {
             },
           },
           y: {
+            display: false,
             ticks: {
               callback: function (value, index, values) {
                 if (parseInt(value) > 999) {
@@ -118,11 +125,11 @@ export default {
 </script>
 
 <style>
-.wrapper {
+.circle {
   border-radius: 1rem;
+  background-color: white;
+  padding: 1rem;
   width: 100%;
   height: 100%;
-  padding: 1rem;
-  background-color: white;
 }
 </style>

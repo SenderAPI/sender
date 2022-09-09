@@ -1,6 +1,9 @@
 <template>
   <div>
-    <div class="bg-white mt-5 p-1 rounded-xl">
+    <div class="rounded-xl gap-1 flex flex-col justify-center gap-y-5">
+      <Transaction />
+      <Transaction />
+      <Transaction />
       <Transaction />
     </div>
   </div>

@@ -1,17 +1,17 @@
 <template>
   <div class="wrapper">
-    <canvas id="Categories"></canvas>
+    <canvas id="polarChart"></canvas>
   </div>
 </template>
 <script>
 export default {
   mounted() {
-    var ctx = document.getElementById("Categories").getContext("2d");
+    var ctx = document.getElementById("polarChart").getContext("2d");
 
     var gradientStroke = ctx.createLinearGradient(500, 0, 100, 0);
 
     let chart = new Chart(ctx, {
-      type: "doughnut",
+      type: "polarArea",
       data: {
         labels: [
           "ENERO",
@@ -29,7 +29,7 @@ export default {
         datasets: [
           {
             fill: "start",
-            backgroundColor: "#e63946",
+            backgroundColor: "#06d6a0",
             borderWidth: 0,
             hidden: false,
             data: [100000, 12000, 12350, 15570, 18220, 1710, 160],
@@ -42,7 +42,7 @@ export default {
             display: false,
           },
           tooltip: {
-            backgroundColor: "#e63946",
+            backgroundColor: "#06d6a0",
             titleFont: {
               weight: "bold",
               size: 12,
@@ -57,11 +57,10 @@ export default {
               },
               labelColor: function (context) {
                 return {
-                  borderRadius: 5,
-                  backgroundColor: "#e63946",
-                  borderColor: "#e63946",
-                  borderDash: 0,
-                  borderWidth: 5,
+                  borderRadius: 10,
+                  backgroundColor: "#fff",
+                  borderColor: "#fff",
+                  borderWidth: 0.1,
                 };
               },
               labelTextColor: function (context) {
@@ -73,7 +72,6 @@ export default {
         tension: 0.4,
         scales: {
           x: {
-            display: false,
             ticks: {
               font: {
                 size: 10,
@@ -86,7 +84,6 @@ export default {
             },
           },
           y: {
-            display: false,
             ticks: {
               callback: function (value, index, values) {
                 if (parseInt(value) > 999) {
@@ -122,12 +119,9 @@ export default {
 <style>
 .wrapper {
   border-radius: 1rem;
+  width: 100%;
   height: 100%;
-  background-color: white;
   padding: 1rem;
-}
-#Categories {
-  height: 14rem !important;
-  width: 14rem !important;
+  background-color: white;
 }
 </style>

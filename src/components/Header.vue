@@ -8,21 +8,20 @@
             class="mr-3 h-6 sm:h-9 rounded-full"
             alt="Flowbite Logo"
           />
-          <span
-            class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"
+          <span class="self-center text-xl font-semibold whitespace-nowrap text-white"
             >Finance</span
           >
         </div>
 
         <div class="flex gap-4 items-center" v-if="user?.Picture">
-          <div class="flex text-white gap-10">
+          <div class="hidden text-white gap-10 md:flex">
             <p>Reporte</p>
             <p>Proyeccion</p>
           </div>
           <div @click="toggleDropdown('dropdown-notification')">
             <icon-bell
               style="font-size: 1.5em"
-              class="text-gray-800 dark:text-white hover:opacity-80 notification-container"
+              class="text-gray-800 text-white hover:opacity-80 notification-container"
               id="dropdown-notification"
             />
             <div
@@ -64,7 +63,7 @@
           <div class="relative inline-block text-left">
             <div>
               <img
-                class="p-1 w-10 h-10 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
+                class="p-1 w-10 h-10 rounded-full ring-2 ring-gray-500"
                 :src="user?.Picture"
                 v-if="user?.Picture"
                 referrerpolicy="no-referrer"

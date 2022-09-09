@@ -1,10 +1,19 @@
 <template>
   <div class="wrapper">
+    <h2
+      class="font-bold text-xl text-left"
+      style="color: rgb(230 230 252); font-weight: 600; text-align: center"
+    >
+      {{ text }}
+    </h2>
     <canvas id="chartGeneral"></canvas>
   </div>
 </template>
 <script>
 export default {
+  props: {
+    text: String,
+  },
   mounted() {
     var ctx = document.getElementById("chartGeneral").getContext("2d");
 
@@ -68,11 +77,10 @@ export default {
               },
               labelColor: function (context) {
                 return {
-                  borderRadius: 5,
-                  backgroundColor: "#1d3557",
-                  borderColor: "#1d3557",
-                  borderDash: 0,
-                  borderWidth: 5,
+                  borderRadius: 10,
+                  backgroundColor: "#fff",
+                  borderColor: "#fff",
+                  borderWidth: 0.1,
                 };
               },
               labelTextColor: function (context) {

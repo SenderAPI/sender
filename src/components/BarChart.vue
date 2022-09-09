@@ -1,12 +1,23 @@
 <template>
-  <div class="wrapper">
-    <canvas id="barEntries"></canvas>
+  <div class="barChart">
+    <h2
+      class="font-bold text-xl text-left"
+      style="color: rgb(230 230 252); font-weight: 600; text-align: center"
+    >
+      {{ text }}
+    </h2>
+    <canvas :id="id"></canvas>
   </div>
 </template>
 <script>
 export default {
+  props: {
+    color: String,
+    id: String,
+    text: String,
+  },
   mounted() {
-    var ctx = document.getElementById("barEntries").getContext("2d");
+    var ctx = document.getElementById(this.id).getContext("2d");
 
     var gradientStroke = ctx.createLinearGradient(500, 0, 100, 0);
 
@@ -29,7 +40,7 @@ export default {
         datasets: [
           {
             fill: "start",
-            backgroundColor: "#e63946",
+            backgroundColor: this.color,
             borderWidth: 0,
             hidden: false,
             data: [100000, 12000, 12350, 15570, 18220, 1710, 160],
@@ -42,7 +53,7 @@ export default {
             display: false,
           },
           tooltip: {
-            backgroundColor: "#e63946",
+            backgroundColor: this.color,
             titleFont: {
               weight: "bold",
               size: 12,
@@ -57,11 +68,10 @@ export default {
               },
               labelColor: function (context) {
                 return {
-                  borderRadius: 5,
-                  backgroundColor: "#e63946",
-                  borderColor: "#e63946",
-                  borderDash: 0,
-                  borderWidth: 5,
+                  borderRadius: 10,
+                  backgroundColor: "#fff",
+                  borderColor: "#fff",
+                  borderWidth: 0.1,
                 };
               },
               labelTextColor: function (context) {
@@ -118,7 +128,7 @@ export default {
 </script>
 
 <style>
-.wrapper {
+.barChart {
   border-radius: 1rem;
   width: 100%;
   height: 100%;

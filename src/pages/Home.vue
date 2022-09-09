@@ -1,44 +1,51 @@
 <template>
-  <div class="m-10">
-    <div class="flex justify-between w-full flex-col xl:flex-row gap-32 xl:gap-12 px-10">
-      <div class="w-full grid xl:grid-cols-2 grid-cols-1 gap-5 gap-y-20">
-        <div style="height: fit-content">
-          <h2 class="font-bold text-xl text-left">Dinero total</h2>
-          <Chart class="animation-card mt-5" />
-        </div>
-        <div style="height: fit-content">
-          <h2 class="font-bold text-xl text-left">Total egresos</h2>
-          <BarEntries class="animation-card mt-5" />
-        </div>
-        <div style="height: fit-content">
-          <h2 class="font-bold text-xl text-left">Total ingresos</h2>
-          <BarExpense class="animation-card mt-5" />
+  <div class="mt-10 mx-10">
+    <div class="flex justify-between w-full flex-col xl:flex-row xl:gap-12">
+      <div class="w-full grid xl:grid-cols-2 grid-cols-1 gap-x-5 gap-y-5">
+        <div class="flex flex-col gap-5 h-auto" style="height: fit-content">
+          <div style="height: fit-content">
+            <Chart class="animation-card" :text="'Total'" />
+          </div>
+
+          <div style="height: fit-content">
+            <BarChart
+              class="animation-card"
+              :color="'#e63946'"
+              :id="'expense'"
+              :text="'Egresos'"
+            />
+          </div>
+
+          <div style="height: fit-content">
+            <PolarChart class="animation-card" />
+          </div>
         </div>
 
-        <div style="height: fit-content">
-          <h2 class="font-bold text-xl text-left">Categorias</h2>
-          <CategoriesReport class="animation-card mt-5 flex justify-center" />
+        <div class="flex flex-col" style="height: fit-content">
+          <div>
+            <BarChart
+              class="animation-card"
+              :color="'#06d6a0'"
+              :id="'entries'"
+              :text="'Ingresos'"
+            />
+          </div>
+          <div class="mb-10">
+            <div class="grid grid-cols-2 gap-x-5 gap-y-0">
+              <CircleChart :id="1" />
+              <CircleChart :id="2" />
+              <CircleChart :id="3" />
+              <CircleChart :id="4" />
+            </div>
+          </div>
         </div>
       </div>
 
       <div>
-        <h2 class="font-bold text-xl text-left">Transacciones</h2>
+        <h2 class="font-bold text-xl text-left my-5">Transacciones</h2>
         <Transactions />
-
-        <div class="mt-5">
-          <h2 class="font-bold text-xl text-left">Pagos programados</h2>
-          <div class="w-full bg-white mt-5 p-5 rounded-xl">
-            <div class="bg-white rounded-md flex justify-between items-center">
-              <icon-bell
-                style="font-size: 1.5em"
-                class="text-gray-800"
-                id="dropdown-notification"
-              />
-              <p>Descripcion para la transaccion</p>
-              <h1 class="text-danger text-lg font-bold">100000</h1>
-            </div>
-          </div>
-        </div>
+        <h2 class="font-bold text-xl text-left my-5">Pagos programados</h2>
+        <Transactions />
       </div>
     </div>
 
@@ -47,15 +54,16 @@
 </template>
 <script setup>
 import IconBell from "~icons/mdi/bell";
-import CategoriesReport from "../components/CategoriesReport.vue";
+import CircleChart from "../components/CircleChart.vue";
+import PolarChart from "../components/PolarChart.vue";
+import BarChart from "../components/BarChart.vue";
 </script>
 
 <script>
 import store from "../store/store.js";
 import Chart from "../components/Chart.vue";
+
 import Transactions from "../components/Transactions.vue";
-import BarEntries from "../components/BarEntries.vue";
-import BarExpense from "../components/BarExpense.vue";
 export default {
   data() {
     return {};
@@ -73,7 +81,6 @@ export default {
   mounted() {
     this.getPosts();
   },
-  components: { Chart, Transactions, BarEntries, BarExpense },
 };
 </script>
 
@@ -102,5 +109,6 @@ export default {
 .animation-card:hover {
   transform: scale(1.05);
   transition: 0.5s all;
+  box-shadow: -2px 6px 29px -12px #a6a6a6;
 }
 </style>
