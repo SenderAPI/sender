@@ -19,6 +19,7 @@
     "vue": "^3.2.25",
     "vue-axios": "^3.4.1",
     "vue-chartjs": "^4.1.1",
+    "vue-currency-input": "^3.0.0",
     "vue-router": "4",
     "vuex": "^4.0.2"
   },

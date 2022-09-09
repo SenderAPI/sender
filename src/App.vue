@@ -5,19 +5,24 @@
       <router-view />
       <p class="text-white p-10">@Backsoul copyright 2022</p>
     </div>
-    <div></div>
+    <ModalTransaction v-show="showModal" @close-modal="showModal = false" />
+    <div class="button-fab cursor-pointer" @click="showModal = true">+</div>
   </div>
 </template>
 
 <script>
+import ModalTransaction from "./components/ModalTransaction.vue";
 export default {
   name: "App",
   data() {
-    return {};
+    return {
+      showModal: false,
+    };
   },
   methods: {},
   computed: {},
   mounted() {},
+  components: { ModalTransaction },
 };
 </script>
 
@@ -49,5 +54,27 @@ html::-webkit-scrollbar-thumb {
   border-left: 0;
   border-right: 0;
   background-color: #233d62;
+}
+
+.button-fab {
+  width: 4rem;
+  height: 4rem;
+  background: #1d3557;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  color: white;
+  font-weight: 800;
+  font-size: 2rem;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin: 3rem 1rem;
+  border: 1px solid white;
+}
+.button-fab:hover {
+  box-shadow: 0px 6px 17px -10px white;
 }
 </style>

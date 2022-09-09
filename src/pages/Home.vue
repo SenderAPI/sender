@@ -45,16 +45,11 @@
         <Transactions />
       </div>
     </div>
-
-    <div class="button-fab" @click="this.$router.push('create-post')">+</div>
   </div>
 </template>
 <script setup>
-import IconBell from "~icons/mdi/bell";
 import CircleChart from "../components/CircleChart.vue";
-import PolarChart from "../components/PolarChart.vue";
 import BarChart from "../components/BarChart.vue";
-import Category from "../components/Category.vue";
 import Categories from "../components/Categories.vue";
 </script>
 
@@ -84,24 +79,6 @@ export default {
 </script>
 
 <style>
-.button-fab {
-  width: 4rem;
-  height: 4rem;
-  background: white;
-  padding: 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  color: #1d3557;
-  font-weight: 800;
-  font-size: 2rem;
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  margin: 3rem 1rem;
-  box-shadow: 0px 6px 17px -1px grey;
-}
 .animation-card {
   transition: 0.5s all;
   background-color: #1a2e4b;
