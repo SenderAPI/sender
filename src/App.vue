@@ -6,12 +6,15 @@
       <p class="text-white p-10">@Backsoul copyright 2022</p>
     </div>
     <ModalTransaction v-show="showModal" @close-modal="showModal = false" />
-    <div class="button-fab cursor-pointer" @click="showModal = true">+</div>
+    <div class="button-fab cursor-pointer" @click="showModal = true" v-if="user != null">
+      +
+    </div>
   </div>
 </template>
 
 <script>
 import ModalTransaction from "./components/ModalTransaction.vue";
+import store from "./store/store";
 export default {
   name: "App",
   data() {
@@ -21,7 +24,14 @@ export default {
   },
   methods: {},
   computed: {},
-  mounted() {},
+  computed: {
+    isLogged() {
+      return store.getters.isLogged();
+    },
+    user() {
+      return store.getters.user();
+    },
+  },
   components: { ModalTransaction },
 };
 </script>

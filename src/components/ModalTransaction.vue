@@ -1,6 +1,6 @@
 <template>
   <div class="modal-overlay" @click="$emit('close-modal')">
-    <div class="modal" @click.stop>
+    <div class="modal m-5" @click.stop>
       <div
         style="
           width: 100%;
