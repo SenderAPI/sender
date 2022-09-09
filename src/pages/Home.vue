@@ -42,9 +42,9 @@
       </div>
 
       <div>
-        <h2 class="font-bold text-xl text-left my-5">Transacciones</h2>
+        <h2 class="font-bold text-xl text-left my-5 text-white">Transacciones</h2>
         <Transactions />
-        <h2 class="font-bold text-xl text-left my-5">Pagos programados</h2>
+        <h2 class="font-bold text-xl text-left my-5 text-white">Pagos programados</h2>
         <Transactions />
       </div>
     </div>
@@ -88,13 +88,13 @@ export default {
 .button-fab {
   width: 4rem;
   height: 4rem;
-  background: black;
+  background: white;
   padding: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  color: white;
+  color: #1d3557;
   font-weight: 800;
   font-size: 2rem;
   position: fixed;
@@ -105,10 +105,12 @@ export default {
 }
 .animation-card {
   transition: 0.5s all;
+  background-color: #1a2e4b;
+  border-radius: 1rem;
 }
 .animation-card:hover {
   transform: scale(1.05);
   transition: 0.5s all;
-  box-shadow: -2px 6px 29px -12px #a6a6a6;
+  box-shadow: 0px 0px 14px -11px white;
 }
 </style>

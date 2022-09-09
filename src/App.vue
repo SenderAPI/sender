@@ -1,7 +1,7 @@
 <template>
   <div class="bg-secondary">
     <ComponentHeader style="position: absolute; top: 0; left: 0; right: 0" />
-    <div style="height: 100vh; padding-top: 3rem">
+    <div style="height: 100vh; padding-top: 3rem" class="container-scroll">
       <router-view />
     </div>
   </div>
@@ -26,7 +26,26 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
 }
+.container-scroll {
+  background: #1d3557;
+}
 html {
-  background: #edf2f4;
+  background: #1d3557;
+}
+html::-webkit-scrollbar {
+  width: 10px;
+}
+
+html::-webkit-scrollbar-track {
+  background-color: #1d3557;
+  margin: 1rem;
+}
+
+html::-webkit-scrollbar-thumb {
+  border-radius: 100px;
+  border: 6px solid rgba(0, 0, 0, 0.18);
+  border-left: 0;
+  border-right: 0;
+  background-color: #233d62;
 }
 </style>

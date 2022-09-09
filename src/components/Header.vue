@@ -5,23 +5,26 @@
         <div class="flex items-center" @click="router.push({ name: 'Home' })">
           <img
             src="https://avatars.githubusercontent.com/u/65988584?s=400&u=0c04476b6821b4dda1d1a677758f4ff32a241f9a&v=4"
-            class="mr-3 h-6 sm:h-9 rounded-full"
+            class="mr-3 h-6 sm:h-9 rounded-full cursor-pointer"
             alt="Flowbite Logo"
           />
-          <span class="self-center text-xl font-semibold whitespace-nowrap text-white"
+          <span
+            class="self-center text-xl font-semibold whitespace-nowrap text-white cursor-pointer"
             >Finance</span
           >
         </div>
 
         <div class="flex gap-4 items-center" v-if="user?.Picture">
           <div class="hidden text-white gap-10 md:flex">
-            <p>Reporte</p>
-            <p>Proyeccion</p>
+            <a @click="router.push({ name: 'Home' })" class="cursor-pointer">Reporte</a>
+            <a @click="router.push({ name: 'Profile' })" class="cursor-pointer"
+              >Proyeccion</a
+            >
           </div>
           <div @click="toggleDropdown('dropdown-notification')">
             <icon-bell
               style="font-size: 1.5em"
-              class="text-gray-800 text-white hover:opacity-80 notification-container"
+              class="text-gray-800 hover:opacity-80 notification-container"
               id="dropdown-notification"
             />
             <div
@@ -82,7 +85,7 @@
               style="position: absolute; z-index: 999"
             >
               <div class="py-1" role="none">
-                <p class="px-2 font-bold">{{ user?.Name }}</p>
+                <p class="px-5 font-bold">{{ user?.Name }}</p>
                 <button
                   type="submit"
                   class="text-gray-700 block w-full text-left px-4 py-2 text-sm mb-2 hover:text-gray-400"
@@ -97,7 +100,7 @@
                   id="menu-item-3"
                   @click="router.push({ name: 'Profile' })"
                 >
-                  My Profile
+                  Perfil
                 </button>
                 <button
                   type="submit"
@@ -113,7 +116,7 @@
                   id="menu-item-3"
                   @click="logout"
                 >
-                  Logout
+                  Salir
                 </button>
               </div>
             </div>

@@ -102,7 +102,7 @@ export default {
               font: {
                 size: 12,
               },
-              color: "#1d3557",
+              color: "#BFBEE0",
             },
             grid: {
               drawBorder: false,
@@ -122,6 +122,5 @@ export default {
   width: 100%;
   height: 100%;
   padding: 1rem;
-  background-color: white;
 }
 </style>

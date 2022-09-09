@@ -127,7 +127,7 @@ export default {
 <style>
 .circle {
   border-radius: 1rem;
-  background-color: white;
+  background-color: #233d62;
   padding: 1rem;
   width: 100%;
   height: 100%;

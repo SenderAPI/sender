@@ -2,7 +2,7 @@
   <div class="wrapper">
     <h2
       class="font-bold text-xl text-left"
-      style="color: rgb(230 230 252); font-weight: 600; text-align: center"
+      style="color: white; font-weight: 600; text-align: center"
     >
       {{ text }}
     </h2>
@@ -44,12 +44,12 @@ export default {
             pointBackgroundColor: gradientStroke,
             pointHoverBackgroundColor: gradientStroke,
             pointHoverBorderColor: gradientStroke,
-            pointBorderWidth: 5,
-            pointHoverRadius: 5,
+            pointBorderWidth: 1,
+            pointHoverRadius: 1,
             pointHoverBorderWidth: 5,
-            pointRadius: 0.5,
+            pointRadius: 3,
             fill: "start",
-            backgroundColor: "#fff",
+            backgroundColor: "#1d3557",
             borderWidth: 4,
             hidden: false,
             data: [100000, 12000, 12350, 15570, 18220, 1710, 160],
@@ -122,7 +122,7 @@ export default {
               font: {
                 size: 12,
               },
-              color: "#1d3557",
+              color: "#BFBEE0",
             },
             grid: {
               drawBorder: false,
@@ -141,7 +141,6 @@ export default {
   border-radius: 1rem;
   width: 100%;
   height: 100%;
-  background-color: white;
   padding: 1rem;
 }
 </style>
