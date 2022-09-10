@@ -62,7 +62,6 @@
               </div>
             </div>
           </div>
-
           <div class="relative inline-block text-left">
             <div>
               <img
@@ -158,6 +157,7 @@ export default {
       this.dropProfileOpen = false;
       this.$store.commit("setIsLogged", false);
       this.$store.commit("setUser", null);
+      this.$store.commit("setWallet", null);
       router.push({ name: "Login" });
     },
     closeIfClickedOutside(event) {

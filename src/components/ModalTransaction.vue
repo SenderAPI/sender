@@ -49,7 +49,7 @@
         </select>
 
         <div>
-          <button type="">Guardar</button>
+          <button @click="save()">Guardar</button>
         </div>
       </div>
     </div>
@@ -58,9 +58,19 @@
 
 <script>
 import { useCurrencyInput } from "vue-currency-input";
+import store from "../store/store";
 import InputMoney from "./inputMoney.vue";
 
-export default { components: { InputMoney } };
+export default {
+  methods: {
+    save() {
+      store.dispatch("createTransaction", {
+        wallet: store.getters.wallet(),
+      });
+    },
+  },
+  components: { InputMoney },
+};
 </script>
 
 <style scoped>

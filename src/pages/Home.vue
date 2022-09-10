@@ -63,17 +63,25 @@ export default {
     return {};
   },
   computed: {
-    posts() {
-      return store.getters.posts();
+    wallet() {
+      return store.getters.wallet();
+    },
+    user() {
+      return store.getters.user();
     },
   },
   methods: {
-    getPosts() {
-      this.$store.dispatch("getPosts");
+    getWallet() {
+      store.dispatch({
+        type: "getWallet",
+        userId: store.getters.user,
+      });
     },
   },
   mounted() {
-    this.getPosts();
+    if (store.getters.isLogged()) {
+      this.getWallet();
+    }
   },
 };
 </script>

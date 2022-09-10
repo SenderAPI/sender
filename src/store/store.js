@@ -8,8 +8,8 @@ import axios from 'axios'
 export default createStore({
   state: {
     isLogged: false,
-    user: null,
-    posts: []
+    user: {},
+    wallet: {}
   },
   mutations: {
     setIsLogged(state, py) {
@@ -18,13 +18,14 @@ export default createStore({
     setUser(state, user) {
       state.user = user;
     },
-    setPosts(state, posts) {
-      state.posts = posts;
+    setWallet(state, wallet) {
+      state.wallet = wallet;
     },
   },
   actions: {
     async me({
-      commit
+      commit,
+      state
     }) {
       try {
         let {
@@ -38,40 +39,47 @@ export default createStore({
         console.log(error)
       }
     },
-    async createPost(store, payload) {
+    async getWallet({
+      store,
+      commit
+    }, payload) {
       try {
-        let data = await axios.post('/posts/create', {
+        let {
+          data
+        } = await axios.get('/finance/wallet', {
           payload: {
-            content: payload
+            userId: payload.id
           }
         })
-        if (data.status === 200) {
-          window.location = "/";
-        }
+        data = JSON.parse(data.result)
+        commit("setWallet", data);
       } catch (error) {
-        console.log(error)
+        console.log(error.response.status)
       }
     },
-    async getPosts({
+    async createTransaction({
       commit
+    }, {
+      wallet
     }) {
       try {
         let {
           data
-        } = await axios.post('/posts/obtain-posts', {
-          payload: {}
+        } = await axios.post('/finance/transaction', {
+          "walletId": wallet.id
         })
         data = JSON.parse(data.result)
-        commit("setPosts", data);
+        //commit("setWallet", data);
+        console.log(data)
       } catch (error) {
-        console.log(error.response.status)
+        console.log(error)
       }
     },
   },
   getters: {
     isLogged: (state) => () => state.isLogged,
     user: (state) => () => state.user,
-    posts: (state) => () => state.posts,
+    wallet: (state) => () => state.wallet,
   },
 })
 

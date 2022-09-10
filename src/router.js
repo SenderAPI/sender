@@ -53,8 +53,8 @@ function getCookie(cname) {
 router.beforeEach((to, from) => {
   const accessToken = getCookie('access_token');
   if (accessToken) {
-    store.commit('setIsLogged', true)
     store.dispatch("me");
+    store.commit('setIsLogged', true);
   }
   const isAuthenticated = store.getters.isLogged();
   if (
