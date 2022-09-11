@@ -1,10 +1,10 @@
 <template>
   <div class="mt-10 mx-5">
     <div class="flex justify-between w-full flex-col xl:flex-row xl:gap-0">
-      <div class="w-full grid xl:grid-cols-2 grid-cols-1 gap-x-5 gap-y-5">
+      <div class="w-full grid xl:grid-cols-2 grid-cols-1 gap-x-2 gap-y-5">
         <div class="flex flex-col gap-5 h-auto" style="height: fit-content">
           <div style="height: fit-content">
-            <Chart class="animation-card" :text="'Total'" />
+            <Chart class="animation-card" :text="'Total'" v-if="reportMonths" />
           </div>
 
           <div style="height: fit-content">
@@ -35,7 +35,7 @@
         </div>
       </div>
 
-      <div>
+      <div style="min-width: 19%">
         <h2 class="font-bold text-xl text-center text-white">Historial transacciones</h2>
         <Transactions />
         <h2 class="font-bold text-xl text-center mt-5 text-white">Pagos programados</h2>
@@ -59,11 +59,17 @@ export default {
   data() {
     return {};
   },
+  computed: {
+    reportMonths() {
+      return store.getters.reportMonths();
+    },
+  },
   mounted() {
     store.dispatch("getCategories");
     store.dispatch("getWallet");
     store.dispatch("getMoves");
     store.dispatch("getAllTransactions");
+    store.dispatch("getReportMonths");
   },
 };
 </script>

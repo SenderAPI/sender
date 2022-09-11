@@ -1,22 +1,26 @@
 <template>
   <div style="overflow-y: auto; height: 20rem" class="transactions-container">
     <div class="rounded-xl gap-1 flex flex-col justify-center gap-y-5">
-      <Transaction />
-      <Transaction />
-      <Transaction />
-      <Transaction />
-      <Transaction />
-      <Transaction />
-      <Transaction />
-      <Transaction />
-      <Transaction />
+      <Transaction
+        v-for="transaction in transactions"
+        :description="transaction.description"
+        :amount="transaction.amount"
+      />
     </div>
   </div>
 </template>
 
 <script>
+import store from "../store/store";
 import Transaction from "./Transaction.vue";
-export default { components: { Transaction } };
+export default {
+  computed: {
+    transactions() {
+      return store.getters.transactions();
+    },
+  },
+  components: { Transaction },
+};
 </script>
 
 <style>

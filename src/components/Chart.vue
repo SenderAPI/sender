@@ -10,13 +10,25 @@
   </div>
 </template>
 <script>
+import store from "../store/store";
+
 export default {
   props: {
     text: String,
   },
+  computed: {
+    reportMonths() {
+      let data = [];
+      if (store.getters.reportMonths()) {
+        store.getters.reportMonths().forEach((element) => {
+          data.push(element.total);
+        });
+      }
+      return data;
+    },
+  },
   mounted() {
     var ctx = document.getElementById("chartGeneral").getContext("2d");
-
     var gradientStroke = ctx.createLinearGradient(500, 0, 100, 0);
     gradientStroke.addColorStop(0, "#1d3557");
     gradientStroke.addColorStop(1, "#457b9d");
@@ -52,7 +64,7 @@ export default {
             backgroundColor: "#1d3557",
             borderWidth: 4,
             hidden: false,
-            data: [100000, 12000, 12350, 15570, 18220, 1710, 160],
+            data: this.reportMonths,
           },
         ],
       },
@@ -133,6 +145,7 @@ export default {
       },
     });
   },
+  methods: {},
 };
 </script>
 

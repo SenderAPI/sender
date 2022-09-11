@@ -59,7 +59,7 @@
 
         <div class="flex gap-2">
           <h2 class="text-white text-start font-bold">Movimiento recurrente:</h2>
-          <input type="checkbox" v-model="payRecurrent" />
+          <input type="checkbox" v-model="isRecurrent" />
         </div>
 
         <div>
@@ -80,7 +80,7 @@ export default {
     return {
       amount: 0,
       date: null,
-      payRecurrent: false,
+      isRecurrent: false,
       description: "",
       categoryId: null,
       moveId: null,
@@ -107,6 +107,7 @@ export default {
           new Date(this.date).toISOString().slice(0, 10) +
           " " +
           new Date(this.date).toLocaleTimeString(),
+        isRecurrent: this.isRecurrent,
       });
     },
   },

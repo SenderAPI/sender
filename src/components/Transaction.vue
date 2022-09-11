@@ -4,15 +4,23 @@
   >
     <icon-bell style="font-size: 2.5rem" class="text-white" id="dropdown-notification" />
     <p style="font-size: 0.7rem; font-weight: 200" class="px-10 text-white">
-      Descripcion para la transaccion
+      {{ description }}
     </p>
-    <h1 class="text-danger text-xs font-bold">$100000</h1>
+    <h1 class="text-danger text-xs font-bold">${{ amount }}</h1>
   </div>
 </template>
 <script setup>
 import IconBell from "~icons/mdi/bell";
 </script>
 
+<script>
+export default {
+  props: {
+    description: String,
+    amount: String,
+  },
+};
+</script>
 <style>
 .animation-card {
   transition: 0.5s all;

@@ -16,6 +16,7 @@ export default createStore({
     categories: null,
     moves: null,
     transactions: null,
+    reportMonths: null
   },
   mutations: {
     setIsLogged(state, py) {
@@ -44,6 +45,9 @@ export default createStore({
     },
     setTransactions(state, transactions) {
       state.transactions = transactions
+    },
+    setReportMonths(state, reportMonths) {
+      state.reportMonths = reportMonths
     }
 
   },
@@ -58,6 +62,7 @@ export default createStore({
     categories: (state) => () => state.categories,
     moves: (state) => () => state.moves,
     transactions: (state) => () => state.transactions,
+    reportMonths: (state) => () => state.reportMonths,
   },
   actions: {
     async me({
@@ -115,6 +120,21 @@ export default createStore({
         console.log(error.response.status)
       }
     },
+    async getReportMonths({
+      commit
+    }) {
+      try {
+        let {
+          data
+        } = await axios.get('/finance/transaction/reportMonths')
+        data = JSON.parse(data.result)
+        commit("setReportMonths", data);
+      } catch (error) {
+        console.log(error.response.status)
+      }
+    },
+
+
     async getAllTransactions({
       commit
     }) {
@@ -129,7 +149,8 @@ export default createStore({
       }
     },
     async createTransaction({
-      commit
+      commit,
+      dispatch
     }, payload) {
       try {
         let {
@@ -140,10 +161,13 @@ export default createStore({
           "categoryId": payload.categoryId,
           "moveId": payload.moveId,
           "date": payload.date,
+          "isRecurrent": payload.isRecurrent,
         })
         data = JSON.parse(data.result)
         commit("setModalTransaction", false);
-        console.log(data)
+        commit("setTransactions", [...this.state.transactions, data]);
+
+        dispatch("getReportMonths");
       } catch (error) {
         console.log(error)
       }
