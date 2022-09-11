@@ -100,6 +100,7 @@ export default createStore({
           data
         } = await axios.post('/finance/transaction', {
           "amount": payload.amount,
+          "description": payload.description
         })
         data = JSON.parse(data.result)
         commit("setModalTransaction", false);

@@ -15,7 +15,6 @@
               :text="'Egresos'"
             />
           </div>
-          <Categories />
         </div>
 
         <div class="flex flex-col" style="height: fit-content">
@@ -27,13 +26,11 @@
               :text="'Ingresos'"
             />
           </div>
-          <div class="mb-10">
-            <div class="grid grid-cols-2 gap-x-5 gap-y-0">
-              <CircleChart :id="1" />
-              <CircleChart :id="2" />
-              <CircleChart :id="3" />
-              <CircleChart :id="4" />
-            </div>
+          <div
+            class="grid xl:grid-cols-2 grid-cols-1 gap-x-5 gap-y-0 justify-center items-center mt-5"
+          >
+            <Categories />
+            <CircleChart :id="1" />
           </div>
         </div>
       </div>

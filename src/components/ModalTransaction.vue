@@ -26,7 +26,7 @@
           :options="{ currency: 'COP' }"
           style="border-radius: 1rem; padding: 0.5rem"
         />
-        <h2 class="text-white text-start font-bold">Descripción</h2>
+        <h2 class="text-white text-start font-bold" v-modal="description">Descripción</h2>
         <input
           type="text"
           name=""
@@ -75,12 +75,16 @@ export default {
       amount: 0,
       date: null,
       payRecurrent: false,
+      description: "",
     };
   },
 
   methods: {
     save() {
-      store.dispatch("createTransaction", { amount: this.amount });
+      store.dispatch("createTransaction", {
+        amount: this.amount,
+        description: this.description,
+      });
     },
   },
   components: { InputMoney, Datepicker },
