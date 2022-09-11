@@ -8,8 +8,11 @@ import axios from 'axios'
 export default createStore({
   state: {
     isLogged: false,
-    user: {},
-    wallet: {}
+    user: null,
+    wallet: null,
+    modalTransaction: false,
+    modalAdd: false,
+    modalCategory: false,
   },
   mutations: {
     setIsLogged(state, py) {
@@ -21,6 +24,25 @@ export default createStore({
     setWallet(state, wallet) {
       state.wallet = wallet;
     },
+    setModalTransaction(state, modalTransaction) {
+      state.modalTransaction = modalTransaction
+    },
+    setModalAdd(state, modalAdd) {
+      state.modalAdd = modalAdd
+    },
+    setModalCategory(state, modalCategory) {
+      state.modalCategory = modalCategory
+    }
+
+  },
+
+  getters: {
+    isLogged: (state) => () => state.isLogged,
+    user: (state) => () => state.user,
+    wallet: (state) => () => state.wallet,
+    modalTransaction: (state) => () => state.modalTransaction,
+    modalAdd: (state) => () => state.modalAdd,
+    modalCategory: (state) => () => state.modalCategory
   },
   actions: {
     async me({
@@ -40,17 +62,12 @@ export default createStore({
       }
     },
     async getWallet({
-      store,
       commit
-    }, payload) {
+    }) {
       try {
         let {
           data
-        } = await axios.get('/finance/wallet', {
-          payload: {
-            userId: payload.id
-          }
-        })
+        } = await axios.get('/finance/wallet')
         data = JSON.parse(data.result)
         commit("setWallet", data);
       } catch (error) {
@@ -59,27 +76,36 @@ export default createStore({
     },
     async createTransaction({
       commit
-    }, {
-      wallet
-    }) {
+    }, payload) {
       try {
         let {
           data
         } = await axios.post('/finance/transaction', {
-          "walletId": wallet.id
+          "amount": payload.amount,
         })
         data = JSON.parse(data.result)
-        //commit("setWallet", data);
+        commit("setModalTransaction", false);
         console.log(data)
       } catch (error) {
         console.log(error)
       }
     },
-  },
-  getters: {
-    isLogged: (state) => () => state.isLogged,
-    user: (state) => () => state.user,
-    wallet: (state) => () => state.wallet,
+    async createCategory({
+      commit
+    }, payload) {
+      try {
+        let {
+          data
+        } = await axios.post('/finance/category', {
+          "name": payload.name,
+        })
+        data = JSON.parse(data.result)
+        commit("setModalCategory", false);
+        console.log(data)
+      } catch (error) {
+        console.log(error)
+      }
+    },
   },
 })
 
@@ -100,7 +126,6 @@ axios.interceptors.response.use(
   }
 );
 
-// setting axios 
 axios.interceptors.request.use(request => {
   // add auth header with jwt if account is logged in and request is to the api url
   const access_token = getCookie("access_token")

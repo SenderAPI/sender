@@ -1,6 +1,6 @@
 <template>
   <div class="modal-overlay" @click="$emit('close-modal')">
-    <div class="modal m-5" @click.stop>
+    <div class="modal" @click.stop>
       <div
         style="
           width: 100%;
@@ -22,7 +22,7 @@
       <div class="flex flex-col gap-2 mx-10">
         <h2 class="text-white text-start font-bold">Ingrese el valor</h2>
         <InputMoney
-          v-model="value"
+          v-model="amount"
           :options="{ currency: 'COP' }"
           style="border-radius: 1rem; padding: 0.5rem"
         />
@@ -48,6 +48,14 @@
           <option>Egreso</option>
         </select>
 
+        <h2 class="text-white text-start font-bold">Fecha</h2>
+        <Datepicker v-model="date"></Datepicker>
+
+        <div class="flex gap-2">
+          <h2 class="text-white text-start font-bold">Movimiento recurrente:</h2>
+          <input type="checkbox" v-model="payRecurrent" />
+        </div>
+
         <div>
           <button @click="save()">Guardar</button>
         </div>
@@ -57,19 +65,25 @@
 </template>
 
 <script>
-import { useCurrencyInput } from "vue-currency-input";
 import store from "../store/store";
 import InputMoney from "./inputMoney.vue";
-
+import Datepicker from "@vuepic/vue-datepicker";
+import "@vuepic/vue-datepicker/dist/main.css";
 export default {
+  data() {
+    return {
+      amount: 0,
+      date: null,
+      payRecurrent: false,
+    };
+  },
+
   methods: {
     save() {
-      store.dispatch("createTransaction", {
-        wallet: store.getters.wallet(),
-      });
+      store.dispatch("createTransaction", { amount: this.amount });
     },
   },
-  components: { InputMoney },
+  components: { InputMoney, Datepicker },
 };
 </script>
 
@@ -101,7 +115,7 @@ export default {
 .modal {
   text-align: center;
   background-color: #1d3557;
-  height: 500px;
+  height: 600px;
   width: 500px;
   margin-top: 10%;
   padding: 60px 0;

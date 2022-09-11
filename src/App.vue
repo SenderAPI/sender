@@ -5,8 +5,20 @@
       <router-view />
       <p class="text-white p-10">@Backsoul copyright 2022</p>
     </div>
-    <ModalTransaction v-show="showModal" @close-modal="showModal = false" />
-    <div class="button-fab cursor-pointer" @click="showModal = true" v-if="user != null">
+    <ModalTransaction
+      v-show="modalTransaction"
+      @close-modal="setModal('setModalTransaction', false)"
+    />
+    <ModalAdd v-show="modalAdd" @close-modal="setModal('setModalAdd', false)" />
+    <ModalCategory
+      v-show="modalCategory"
+      @close-modal="setModal('setModalCategory', false)"
+    />
+    <div
+      class="button-fab cursor-pointer"
+      @click="setModal('setModalAdd', true)"
+      v-if="user != null"
+    >
       +
     </div>
   </div>
@@ -15,15 +27,18 @@
 <script>
 import ModalTransaction from "./components/ModalTransaction.vue";
 import store from "./store/store";
+import ModalAdd from "./components/ModalAdd.vue";
+import ModalCategory from "./components/ModalCategory.vue";
 export default {
   name: "App",
   data() {
-    return {
-      showModal: false,
-    };
+    return {};
   },
-  methods: {},
-  computed: {},
+  methods: {
+    setModal(modal, show) {
+      store.commit(modal, show);
+    },
+  },
   computed: {
     isLogged() {
       return store.getters.isLogged();
@@ -31,8 +46,17 @@ export default {
     user() {
       return store.getters.user();
     },
+    modalTransaction() {
+      return store.getters.modalTransaction();
+    },
+    modalAdd() {
+      return store.getters.modalAdd();
+    },
+    modalCategory() {
+      return store.getters.modalCategory();
+    },
   },
-  components: { ModalTransaction },
+  components: { ModalTransaction, ModalAdd, ModalCategory },
 };
 </script>
 

@@ -72,16 +72,11 @@ export default {
   },
   methods: {
     getWallet() {
-      store.dispatch({
-        type: "getWallet",
-        userId: store.getters.user,
-      });
+      store.dispatch("getWallet");
     },
   },
   mounted() {
-    if (store.getters.isLogged()) {
-      this.getWallet();
-    }
+    this.getWallet();
   },
 };
 </script>
