@@ -47,7 +47,7 @@ export default createStore({
     modalTransaction: (state) => () => state.modalTransaction,
     modalAdd: (state) => () => state.modalAdd,
     modalCategory: (state) => () => state.modalCategory,
-    categories: (state) => state.categories
+    categories: (state) => () => state.categories
   },
   actions: {
     async me({
@@ -119,7 +119,7 @@ export default createStore({
         })
         data = JSON.parse(data.result)
         commit("setModalCategory", false);
-        console.log(data)
+        commit("setCategories", [...this.state.categories, data]);
       } catch (error) {
         console.log(error)
       }

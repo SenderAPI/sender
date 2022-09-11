@@ -2,22 +2,27 @@
   <div
     class="bg-dark grid grid-cols-3 gap-x-2 gap-y-2 p-5 rounded-xl categories-container"
     style="overflow-y: auto; height: 15rem"
+    v-if="categories"
   >
-    <Category :text="'Salario'" />
-    <Category :text="'Telecomunicación'" />
-    <Category :text="'Creditos'" />
-    <Category :text="'Comida'" />
-    <Category :text="'Otros'" />
-    <Category :text="'Otros'" />
-    <Category :text="'Otros'" />
-    <Category :text="'Otros'" />
-    <Category :text="'Otros'" />
-    <Category :text="'Otros'" />
+    <Category :text="category.name" v-for="category in categories" :key="category.name" />
   </div>
 </template>
 <script>
+import store from "../store/store";
 import Category from "./Category.vue";
-export default { components: { Category } };
+export default {
+  data() {
+    return {
+      categories: null,
+    };
+  },
+  computed: {
+    categories() {
+      return store.getters.categories();
+    },
+  },
+  components: { Category },
+};
 </script>
 
 <style>

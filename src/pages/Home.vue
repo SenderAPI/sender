@@ -62,15 +62,6 @@ export default {
   data() {
     return {};
   },
-  computed: {
-    wallet() {
-      return store.getters.wallet();
-    },
-    user() {
-      return store.getters.user();
-    },
-  },
-  methods: {},
   mounted() {
     store.dispatch("getCategories");
     store.dispatch("getWallet");
