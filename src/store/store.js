@@ -13,7 +13,9 @@ export default createStore({
     modalTransaction: false,
     modalAdd: false,
     modalCategory: false,
-    categories: null
+    categories: null,
+    moves: null,
+    transactions: null,
   },
   mutations: {
     setIsLogged(state, py) {
@@ -36,6 +38,12 @@ export default createStore({
     },
     setCategories(state, categories) {
       state.categories = categories
+    },
+    setMoves(state, moves) {
+      state.moves = moves
+    },
+    setTransactions(state, transactions) {
+      state.transactions = transactions
     }
 
   },
@@ -47,7 +55,9 @@ export default createStore({
     modalTransaction: (state) => () => state.modalTransaction,
     modalAdd: (state) => () => state.modalAdd,
     modalCategory: (state) => () => state.modalCategory,
-    categories: (state) => () => state.categories
+    categories: (state) => () => state.categories,
+    moves: (state) => () => state.moves,
+    transactions: (state) => () => state.transactions,
   },
   actions: {
     async me({
@@ -92,6 +102,32 @@ export default createStore({
         console.log(error.response.status)
       }
     },
+    async getMoves({
+      commit
+    }) {
+      try {
+        let {
+          data
+        } = await axios.get('/finance/move')
+        data = JSON.parse(data.result)
+        commit("setMoves", data);
+      } catch (error) {
+        console.log(error.response.status)
+      }
+    },
+    async getAllTransactions({
+      commit
+    }) {
+      try {
+        let {
+          data
+        } = await axios.get('/finance/transaction')
+        data = JSON.parse(data.result)
+        commit("setTransactions", data);
+      } catch (error) {
+        console.log(error.response.status)
+      }
+    },
     async createTransaction({
       commit
     }, payload) {
@@ -100,7 +136,10 @@ export default createStore({
           data
         } = await axios.post('/finance/transaction', {
           "amount": payload.amount,
-          "description": payload.description
+          "description": payload.description,
+          "categoryId": payload.categoryId,
+          "moveId": payload.moveId,
+          "date": payload.date,
         })
         data = JSON.parse(data.result)
         commit("setModalTransaction", false);

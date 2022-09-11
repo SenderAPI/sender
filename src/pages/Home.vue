@@ -62,6 +62,8 @@ export default {
   mounted() {
     store.dispatch("getCategories");
     store.dispatch("getWallet");
+    store.dispatch("getMoves");
+    store.dispatch("getAllTransactions");
   },
 };
 </script>

@@ -26,26 +26,32 @@
           :options="{ currency: 'COP' }"
           style="border-radius: 1rem; padding: 0.5rem"
         />
-        <h2 class="text-white text-start font-bold" v-modal="description">Descripción</h2>
+        <h2 class="text-white text-start font-bold">Descripción</h2>
         <input
           type="text"
-          name=""
-          id=""
+          v-model="description"
           placeholder="Descripción"
           style="border-radius: 1rem; padding: 0.5rem"
         />
         <h2 class="text-white text-start font-bold">Selecciona una categoria</h2>
-        <select name="Categorias" style="border-radius: 1rem; padding: 0.5rem">
-          <option>Fútbol</option>
-          <option>Críquet</option>
-          <option>Básquetbol</option>
-          <option>Hockey</option>
-          <option>Tenis</option>
+        <select
+          name="Categorias"
+          style="border-radius: 1rem; padding: 0.5rem"
+          v-model="categoryId"
+        >
+          <option v-for="category in categories" :value="category.id">
+            {{ category.name }}
+          </option>
         </select>
         <h2 class="text-white text-start font-bold">Selecciona tipo de movimiento</h2>
-        <select name="Tipo de movimiento" style="border-radius: 1rem; padding: 0.5rem">
-          <option>Ingreso</option>
-          <option>Egreso</option>
+        <select
+          name="Tipo de movimiento"
+          style="border-radius: 1rem; padding: 0.5rem"
+          v-model="moveId"
+        >
+          <option v-for="move in moves" :value="move.id">
+            {{ move.name }}
+          </option>
         </select>
 
         <h2 class="text-white text-start font-bold">Fecha</h2>
@@ -76,14 +82,31 @@ export default {
       date: null,
       payRecurrent: false,
       description: "",
+      categoryId: null,
+      moveId: null,
     };
+  },
+  computed: {
+    categories() {
+      return store.getters.categories();
+    },
+    moves() {
+      return store.getters.moves();
+    },
   },
 
   methods: {
     save() {
+      // yyyy-mm-dd hh:mm:ss
       store.dispatch("createTransaction", {
         amount: this.amount,
         description: this.description,
+        categoryId: this.categoryId,
+        moveId: this.moveId,
+        date:
+          new Date(this.date).toISOString().slice(0, 10) +
+          " " +
+          new Date(this.date).toLocaleTimeString(),
       });
     },
   },
