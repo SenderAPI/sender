@@ -70,13 +70,10 @@ export default {
       return store.getters.user();
     },
   },
-  methods: {
-    getWallet() {
-      store.dispatch("getWallet");
-    },
-  },
+  methods: {},
   mounted() {
-    this.getWallet();
+    store.dispatch("getCategories");
+    store.dispatch("getWallet");
   },
 };
 </script>

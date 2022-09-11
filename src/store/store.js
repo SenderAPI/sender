@@ -13,6 +13,7 @@ export default createStore({
     modalTransaction: false,
     modalAdd: false,
     modalCategory: false,
+    categories: null
   },
   mutations: {
     setIsLogged(state, py) {
@@ -32,6 +33,9 @@ export default createStore({
     },
     setModalCategory(state, modalCategory) {
       state.modalCategory = modalCategory
+    },
+    setCategories(state, categories) {
+      state.categories = categories
     }
 
   },
@@ -42,7 +46,8 @@ export default createStore({
     wallet: (state) => () => state.wallet,
     modalTransaction: (state) => () => state.modalTransaction,
     modalAdd: (state) => () => state.modalAdd,
-    modalCategory: (state) => () => state.modalCategory
+    modalCategory: (state) => () => state.modalCategory,
+    categories: (state) => state.categories
   },
   actions: {
     async me({
@@ -70,6 +75,19 @@ export default createStore({
         } = await axios.get('/finance/wallet')
         data = JSON.parse(data.result)
         commit("setWallet", data);
+      } catch (error) {
+        console.log(error.response.status)
+      }
+    },
+    async getCategories({
+      commit
+    }) {
+      try {
+        let {
+          data
+        } = await axios.get('/finance/category')
+        data = JSON.parse(data.result)
+        commit("setCategories", data);
       } catch (error) {
         console.log(error.response.status)
       }
