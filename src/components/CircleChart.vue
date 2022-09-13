@@ -10,21 +10,30 @@
 export default {
   props: {
     id: String,
+    data: null,
   },
   mounted() {
     var ctx = document.getElementById(this.id).getContext("2d");
 
     var gradientStroke = ctx.createLinearGradient(500, 0, 100, 0);
 
+    console.log(this.data);
+
+    const labels = this.data.map((category) => category.name);
+    const amounts = this.data.map((category) => category.amount);
+
     let chart = new Chart(ctx, {
       type: "doughnut",
       data: {
-        labels: ["Red", "Blue", "Yellow", "Yellow"],
+        labels: labels,
         datasets: [
           {
             label: "My First Dataset",
-            data: [300, 50, 100, 1321],
-            backgroundColor: ["rgb(255, 99, 132)"],
+            data: amounts,
+            backgroundColor: [...amounts].map(
+              (label) =>
+                "#" + ((Math.random() * 0xffffff) << 0).toString(16).padStart(6, "0")
+            ),
             hoverOffset: 4,
           },
         ],
@@ -46,7 +55,7 @@ export default {
             },
             callbacks: {
               label: function (tooltipItem) {
-                return tooltipItem.label + " $" + tooltipItem.raw;
+                return tooltipItem.label + " $" + Math.abs(tooltipItem.raw);
               },
               labelColor: function (context) {
                 return {

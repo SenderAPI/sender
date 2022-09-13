@@ -39,7 +39,7 @@
             class="grid xl:grid-cols-2 grid-cols-1 gap-x-5 gap-y-0 justify-center items-center mt-5"
           >
             <Categories />
-            <CircleChart :id="1" />
+            <CircleChart :id="1" :data="reportCategories" v-if="reportCategories" />
           </div>
         </div>
       </div>
@@ -81,6 +81,9 @@ export default {
     transactions() {
       return store.getters.transactions();
     },
+    reportCategories() {
+      return store.getters.reportCategories();
+    },
   },
   mounted() {
     store.dispatch("getCategories");
@@ -88,6 +91,7 @@ export default {
     store.dispatch("getMoves");
     store.dispatch("getAllTransactions");
     store.dispatch("getReportMonths");
+    store.dispatch("getReportCategories");
   },
 };
 </script>

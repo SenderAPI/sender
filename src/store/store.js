@@ -19,6 +19,7 @@ export default createStore({
     reportMonths: null,
     reportEntries: null,
     reportExpenses: null,
+    reportCategories: null,
   },
   mutations: {
     setIsLogged(state, py) {
@@ -56,6 +57,9 @@ export default createStore({
     },
     setReportExpenses(state, reportExpenses) {
       state.reportExpenses = reportExpenses
+    },
+    setReportCategories(state, reportCategories) {
+      state.reportCategories = reportCategories
     }
 
   },
@@ -73,6 +77,7 @@ export default createStore({
     reportMonths: (state) => () => state.reportMonths,
     reportEntries: (state) => () => state.reportEntries,
     reportExpenses: (state) => () => state.reportExpenses,
+    reportCategories: (state) => () => state.reportCategories,
   },
   actions: {
     async me({
@@ -177,6 +182,21 @@ export default createStore({
         })
         data = JSON.parse(data.result)
         commit("setReportExpenses", data);
+      } catch (error) {
+        console.log(error.response.status)
+      }
+    },
+    async getReportCategories({
+      commit,
+      getters
+    }) {
+      try {
+        commit("setReportCategories", null);
+        let {
+          data
+        } = await axios.get('/finance/category/report')
+        data = JSON.parse(data.result)
+        commit("setReportCategories", data);
       } catch (error) {
         console.log(error.response.status)
       }
