@@ -15,8 +15,10 @@ export default {
     color: String,
     id: String,
     text: String,
+    data: null,
   },
   mounted() {
+    console.log(this.data);
     var ctx = document.getElementById(this.id).getContext("2d");
 
     var gradientStroke = ctx.createLinearGradient(500, 0, 100, 0);
@@ -31,6 +33,7 @@ export default {
           "ABRIL",
           "MAYO",
           "JUNIO",
+          "JULIO",
           "AGOSTO",
           "SEPTIEMBRE",
           "OCTUBRE",
@@ -44,7 +47,7 @@ export default {
             borderWidth: 0,
             hidden: false,
             hoverBackgroundColor: "#fff",
-            data: [100000, 12000, 12350, 15570, 18220, 1710, 160],
+            data: this.data ? this.data.map((month) => month.total) : [],
           },
         ],
       },

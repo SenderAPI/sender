@@ -14,11 +14,10 @@
 import store from "../store/store";
 import Transaction from "./Transaction.vue";
 export default {
-  computed: {
-    transactions() {
-      return store.getters.transactions();
-    },
+  props: {
+    transactions: null,
   },
+  computed: {},
   components: { Transaction },
 };
 </script>

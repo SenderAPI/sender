@@ -13,6 +13,8 @@
               :color="'#e63946'"
               :id="'expense'"
               :text="'Egresos'"
+              :data="reportExpenses"
+              v-if="reportExpenses"
             />
           </div>
         </div>
@@ -20,10 +22,12 @@
         <div class="flex flex-col" style="height: fit-content">
           <div>
             <BarChart
+              v-if="reportEntries"
               class="animation-card"
               :color="'#06d6a0'"
               :id="'entries'"
               :text="'Ingresos'"
+              :data="reportEntries"
             />
           </div>
           <div
@@ -37,7 +41,7 @@
 
       <div style="min-width: 19%">
         <h2 class="font-bold text-xl text-center text-white">Historial transacciones</h2>
-        <Transactions />
+        <Transactions :transactions="transactions" />
         <h2 class="font-bold text-xl text-center mt-5 text-white">Pagos programados</h2>
         <Transactions />
       </div>
@@ -62,6 +66,15 @@ export default {
   computed: {
     reportMonths() {
       return store.getters.reportMonths();
+    },
+    reportEntries() {
+      return store.getters.reportEntries();
+    },
+    reportExpenses() {
+      return store.getters.reportExpenses();
+    },
+    transactions() {
+      return store.getters.transactions();
     },
   },
   mounted() {

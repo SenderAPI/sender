@@ -16,7 +16,9 @@ export default createStore({
     categories: null,
     moves: null,
     transactions: null,
-    reportMonths: null
+    reportMonths: null,
+    reportEntries: null,
+    reportExpenses: null,
   },
   mutations: {
     setIsLogged(state, py) {
@@ -48,6 +50,12 @@ export default createStore({
     },
     setReportMonths(state, reportMonths) {
       state.reportMonths = reportMonths
+    },
+    setReportEntries(state, reportEntries) {
+      state.reportEntries = reportEntries
+    },
+    setReportExpenses(state, reportExpenses) {
+      state.reportExpenses = reportExpenses
     }
 
   },
@@ -63,6 +71,8 @@ export default createStore({
     moves: (state) => () => state.moves,
     transactions: (state) => () => state.transactions,
     reportMonths: (state) => () => state.reportMonths,
+    reportEntries: (state) => () => state.reportEntries,
+    reportExpenses: (state) => () => state.reportExpenses,
   },
   actions: {
     async me({
@@ -108,7 +118,8 @@ export default createStore({
       }
     },
     async getMoves({
-      commit
+      commit,
+      dispatch
     }) {
       try {
         let {
@@ -116,6 +127,8 @@ export default createStore({
         } = await axios.get('/finance/move')
         data = JSON.parse(data.result)
         commit("setMoves", data);
+        dispatch("getReportEntries");
+        dispatch("getReportExpenses");
       } catch (error) {
         console.log(error.response.status)
       }
@@ -124,6 +137,7 @@ export default createStore({
       commit
     }) {
       try {
+        commit("setReportMonths", null);
         let {
           data
         } = await axios.get('/finance/transaction/reportMonths')
@@ -133,8 +147,40 @@ export default createStore({
         console.log(error.response.status)
       }
     },
-
-
+    async getReportEntries({
+      commit,
+      getters
+    }) {
+      try {
+        commit("setReportEntries", null);
+        let {
+          data
+        } = await axios.post('/finance/transaction/reportTypeMove', {
+          "moveId": [...getters.moves()].filter(move => move.name == "Ingreso")[0].id
+        })
+        data = JSON.parse(data.result)
+        commit("setReportEntries", data);
+      } catch (error) {
+        console.log(error.response.status)
+      }
+    },
+    async getReportExpenses({
+      commit,
+      getters
+    }) {
+      try {
+        commit("setReportExpenses", null);
+        let {
+          data
+        } = await axios.post('/finance/transaction/reportTypeMove', {
+          "moveId": [...getters.moves()].filter(move => move.name == "Egreso")[0].id
+        })
+        data = JSON.parse(data.result)
+        commit("setReportExpenses", data);
+      } catch (error) {
+        console.log(error.response.status)
+      }
+    },
     async getAllTransactions({
       commit
     }) {
@@ -168,6 +214,8 @@ export default createStore({
         commit("setTransactions", [...this.state.transactions, data]);
 
         dispatch("getReportMonths");
+        dispatch("getReportExpenses");
+        dispatch("getReportEntries");
       } catch (error) {
         console.log(error)
       }
