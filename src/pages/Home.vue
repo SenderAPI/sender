@@ -4,7 +4,12 @@
       <div class="w-full grid xl:grid-cols-2 grid-cols-1 gap-x-2 gap-y-5">
         <div class="flex flex-col gap-5 h-auto" style="height: fit-content">
           <div style="height: fit-content">
-            <Chart class="animation-card" :text="'Total'" v-if="reportMonths" />
+            <Chart
+              class="animation-card"
+              :text="'Total'"
+              :data="reportMonths"
+              v-if="reportMonths"
+            />
           </div>
 
           <div style="height: fit-content">

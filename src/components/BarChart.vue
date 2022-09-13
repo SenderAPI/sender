@@ -18,7 +18,6 @@ export default {
     data: null,
   },
   mounted() {
-    console.log(this.data);
     var ctx = document.getElementById(this.id).getContext("2d");
 
     var gradientStroke = ctx.createLinearGradient(500, 0, 100, 0);

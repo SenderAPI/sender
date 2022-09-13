@@ -19,27 +19,13 @@ export default {
     let chart = new Chart(ctx, {
       type: "doughnut",
       data: {
-        labels: [
-          "ENERO",
-          "FEBRERO",
-          "MARZO",
-          "ABRIL",
-          "MAYO",
-          "JUNIO",
-          "AGOSTO",
-          "SEPTIEMBRE",
-          "OCTUBRE",
-          "NOVIEMBRE",
-          "DICIEMBRE",
-        ],
+        labels: ["Red", "Blue", "Yellow", "Yellow"],
         datasets: [
           {
-            fill: "start",
-            backgroundColor: "#e63946",
-            borderWidth: 1.5,
-            hoverOffset: 2,
-            hoverBackgroundColor: "#fff",
-            data: [100000, 12000, 12350, 15570, 18220, 1710, 160],
+            label: "My First Dataset",
+            data: [300, 50, 100, 1321],
+            backgroundColor: ["rgb(255, 99, 132)"],
+            hoverOffset: 4,
           },
         ],
       },
@@ -49,7 +35,7 @@ export default {
             display: false,
           },
           tooltip: {
-            backgroundColor: "#e63946",
+            backgroundColor: "#fff",
             titleFont: {
               weight: "bold",
               size: 12,
@@ -60,7 +46,7 @@ export default {
             },
             callbacks: {
               label: function (tooltipItem) {
-                return "$" + tooltipItem.raw;
+                return tooltipItem.label + " $" + tooltipItem.raw;
               },
               labelColor: function (context) {
                 return {
@@ -71,7 +57,7 @@ export default {
                 };
               },
               labelTextColor: function (context) {
-                return "#ffff";
+                return "#000";
               },
             },
           },

@@ -10,17 +10,17 @@
   </div>
 </template>
 <script>
-import store from "../store/store";
-
 export default {
   props: {
     text: String,
+    data: null,
   },
   computed: {
     reportMonths() {
       let data = [];
-      if (store.getters.reportMonths()) {
-        store.getters.reportMonths().forEach((element) => {
+      console.log(this.data);
+      if (this.data) {
+        this.data.forEach((element) => {
           data.push(element.total);
         });
       }
@@ -33,7 +33,7 @@ export default {
     gradientStroke.addColorStop(0, "#1d3557");
     gradientStroke.addColorStop(1, "#457b9d");
 
-    let chart = new Chart(ctx, {
+    new Chart(ctx, {
       type: "line",
       data: {
         labels: [
