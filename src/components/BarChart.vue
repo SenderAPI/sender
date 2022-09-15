@@ -25,7 +25,7 @@ export default {
     var gradientStroke = ctx.createLinearGradient(500, 0, 100, 0);
 
     let chart = new Chart(ctx, {
-      type: "bar",
+      type: "line",
       data: {
         labels: [
           "ENERO",
@@ -45,7 +45,7 @@ export default {
           {
             fill: "start",
             backgroundColor: this.color,
-            borderWidth: 0,
+            borderWidth: 5,
             hidden: false,
             hoverBackgroundColor: "#fff",
             data: this.data ? this.data.map((month) => month.total) : [],
@@ -85,7 +85,7 @@ export default {
             },
           },
         },
-        tension: 0.4,
+        tension: 0.5,
         scales: {
           x: {
             ticks: {
