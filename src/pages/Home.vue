@@ -8,6 +8,7 @@
               class="animation-card"
               :text="'Total'"
               :data="reportMonths"
+              :total="total"
               v-if="reportMonths"
             />
           </div>
@@ -20,6 +21,7 @@
               :text="'Egresos'"
               :data="reportExpenses"
               v-if="reportExpenses"
+              :total="totalExpenses"
             />
           </div>
         </div>
@@ -33,10 +35,11 @@
               :id="'entries'"
               :text="'Ingresos'"
               :data="reportEntries"
+              :total="totalEntries"
             />
           </div>
           <div
-            class="grid xl:grid-cols-2 grid-cols-1 gap-x-5 gap-y-0 justify-center items-center mt-5"
+            class="grid xl:grid-cols-2 grid-cols-1 gap-x-5 gap-y-0 justify-center mt-5"
           >
             <Categories />
             <CircleChart :id="1" :data="reportCategories" v-if="reportCategories" />
@@ -86,6 +89,23 @@ export default {
     },
     transactionsFixed() {
       return store.getters.transactionsFixed();
+    },
+    total() {
+      return [...store.getters.transactions()].length
+        ? [...store.getters.transactions()]
+            .map((t) => t.amount)
+            .reduce((a, b) => a + b, 0)
+        : 0;
+    },
+    totalExpenses() {
+      return [...store.getters.reportExpenses()]
+        .map((t) => t.total)
+        .reduce((a, b) => a + b, 0);
+    },
+    totalEntries() {
+      return [...store.getters.reportEntries()]
+        .map((t) => t.total)
+        .reduce((a, b) => a + b, 0);
     },
   },
   mounted() {

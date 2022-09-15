@@ -6,6 +6,12 @@
     >
       {{ text }}
     </h2>
+    <p
+      style="font-weight: 600; text-align: center"
+      :style="total <= 0 ? { color: 'red' } : { color: 'green' }"
+    >
+      ${{ total }}
+    </p>
     <canvas id="chartGeneral"></canvas>
   </div>
 </template>
@@ -14,6 +20,7 @@ export default {
   props: {
     text: String,
     data: null,
+    total: 0,
   },
   computed: {
     reportMonths() {

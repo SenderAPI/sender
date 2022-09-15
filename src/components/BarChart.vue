@@ -6,6 +6,7 @@
     >
       {{ text }}
     </h2>
+    <p style="color: white; font-weight: 600; text-align: center">${{ total }}</p>
     <canvas :id="id"></canvas>
   </div>
 </template>
@@ -16,6 +17,7 @@ export default {
     id: String,
     text: String,
     data: null,
+    total: 0,
   },
   mounted() {
     var ctx = document.getElementById(this.id).getContext("2d");

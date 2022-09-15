@@ -21,6 +21,7 @@ export default createStore({
     reportExpenses: null,
     reportCategories: null,
     transactionsFixed: null,
+    total: 0
   },
   mutations: {
     setIsLogged(state, py) {
@@ -64,6 +65,9 @@ export default createStore({
     },
     setTransactionsFixed(state, transactionsFixed) {
       state.transactionsFixed = transactionsFixed
+    },
+    setTotal(state, total) {
+      state.total = total
     }
 
   },
@@ -82,7 +86,8 @@ export default createStore({
     reportEntries: (state) => () => state.reportEntries,
     reportExpenses: (state) => () => state.reportExpenses,
     reportCategories: (state) => () => state.reportCategories,
-    transactionsFixed: (state) => () => state.transactionsFixed
+    transactionsFixed: (state) => () => state.transactionsFixed,
+    total: (state) => () => state.total
   },
   actions: {
     async me({
@@ -110,6 +115,19 @@ export default createStore({
         } = await axios.get('/finance/wallet')
         data = JSON.parse(data.result)
         commit("setWallet", data);
+      } catch (error) {
+        console.log(error.response.status)
+      }
+    },
+    async getTotal({
+      commit
+    }) {
+      try {
+        let {
+          data
+        } = await axios.get('/finance/wallet/total')
+        data = JSON.parse(data.result)
+        commit("setTotal", data);
       } catch (error) {
         console.log(error.response.status)
       }
