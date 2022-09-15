@@ -1,7 +1,7 @@
 <template>
   <div
-    class="bg-dark grid grid-cols-3 gap-x-2 gap-y-2 p-5 rounded-xl categories-container"
-    style="overflow-y: auto; height: 15rem"
+    class="bg-dark grid grid-cols-2 gap-x-2 gap-y-2 p-5 rounded-xl categories-container"
+    style="width: 100%; height: fit-content"
     v-if="categories"
   >
     <Category :text="category.name" v-for="category in categories" :key="category.name" />

@@ -47,8 +47,8 @@
       <div style="min-width: 19%">
         <h2 class="font-bold text-xl text-center text-white">Historial transacciones</h2>
         <Transactions :transactions="transactions" />
-        <h2 class="font-bold text-xl text-center mt-5 text-white">Pagos programados</h2>
-        <Transactions />
+        <h2 class="font-bold text-xl text-center mt-5 text-white">Transacciones fijas</h2>
+        <Transactions :transactions="transactionsFixed" />
       </div>
     </div>
   </div>
@@ -84,12 +84,16 @@ export default {
     reportCategories() {
       return store.getters.reportCategories();
     },
+    transactionsFixed() {
+      return store.getters.transactionsFixed();
+    },
   },
   mounted() {
     store.dispatch("getCategories");
     store.dispatch("getWallet");
     store.dispatch("getMoves");
     store.dispatch("getAllTransactions");
+    store.dispatch("getAllTransactionsFixed");
     store.dispatch("getReportMonths");
     store.dispatch("getReportCategories");
   },

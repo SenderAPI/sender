@@ -58,7 +58,7 @@
         <Datepicker v-model="date"></Datepicker>
 
         <div class="flex gap-2">
-          <h2 class="text-white text-start font-bold">Movimiento recurrente:</h2>
+          <h2 class="text-white text-start font-bold">Movimiento fijo:</h2>
           <input type="checkbox" v-model="isRecurrent" />
         </div>
 
@@ -98,11 +98,7 @@ export default {
   methods: {
     save() {
       const movesNegative = ["Retiro", "Egreso", "Transferencia"];
-      console.log([...this.moves]);
       const move = [...this.moves].filter((move) => move.id == this.moveId)[0];
-      console.log(movesNegative);
-      console.log(move);
-      console.log(movesNegative.includes(move.name));
       if (movesNegative.includes(move.name)) {
         this.amount = Math.abs(this.amount) * -1;
       }

@@ -35,7 +35,7 @@ export default {
 
   methods: {
     save() {
-      store.dispatch("createCategory", { name: this.name });
+      store.dispatch("createCategory", { name: this.name, color: this.color });
     },
   },
 };

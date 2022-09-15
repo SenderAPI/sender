@@ -20,6 +20,7 @@ export default createStore({
     reportEntries: null,
     reportExpenses: null,
     reportCategories: null,
+    transactionsFixed: null,
   },
   mutations: {
     setIsLogged(state, py) {
@@ -60,6 +61,9 @@ export default createStore({
     },
     setReportCategories(state, reportCategories) {
       state.reportCategories = reportCategories
+    },
+    setTransactionsFixed(state, transactionsFixed) {
+      state.transactionsFixed = transactionsFixed
     }
 
   },
@@ -78,6 +82,7 @@ export default createStore({
     reportEntries: (state) => () => state.reportEntries,
     reportExpenses: (state) => () => state.reportExpenses,
     reportCategories: (state) => () => state.reportCategories,
+    transactionsFixed: (state) => () => state.transactionsFixed
   },
   actions: {
     async me({
@@ -181,7 +186,13 @@ export default createStore({
           "moveId": [...getters.moves()].filter(move => move.name == "Egreso")[0].id
         })
         data = JSON.parse(data.result)
-        commit("setReportExpenses", data);
+        let expenses = data.map(expense => {
+          return {
+            "month": expense.month,
+            "total": Math.abs(expense.total)
+          }
+        })
+        commit("setReportExpenses", expenses);
       } catch (error) {
         console.log(error.response.status)
       }
@@ -214,6 +225,19 @@ export default createStore({
         console.log(error.response.status)
       }
     },
+    async getAllTransactionsFixed({
+      commit
+    }) {
+      try {
+        let {
+          data
+        } = await axios.get('/finance/transaction/fixed')
+        data = JSON.parse(data.result)
+        commit("setTransactionsFixed", data);
+      } catch (error) {
+        console.log(error.response.status)
+      }
+    },
     async createTransaction({
       commit,
       dispatch
@@ -236,6 +260,8 @@ export default createStore({
         dispatch("getReportMonths");
         dispatch("getReportExpenses");
         dispatch("getReportEntries");
+        dispatch("getReportCategories");
+        dispatch("getAllTransactionsFixed");
       } catch (error) {
         console.log(error)
       }
@@ -248,6 +274,7 @@ export default createStore({
           data
         } = await axios.post('/finance/category', {
           "name": payload.name,
+          "color": payload.color
         })
         data = JSON.parse(data.result)
         commit("setModalCategory", false);

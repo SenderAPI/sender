@@ -18,7 +18,6 @@ export default {
   computed: {
     reportMonths() {
       let data = [];
-      console.log(this.data);
       if (this.data) {
         this.data.forEach((element) => {
           data.push(element.total);

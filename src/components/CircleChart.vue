@@ -14,15 +14,10 @@ export default {
   },
   mounted() {
     var ctx = document.getElementById(this.id).getContext("2d");
-
-    var gradientStroke = ctx.createLinearGradient(500, 0, 100, 0);
-
-    console.log(this.data);
-
     const labels = this.data.map((category) => category.name);
     const amounts = this.data.map((category) => category.amount);
-
-    let chart = new Chart(ctx, {
+    const colors = this.data.map((category) => category.color);
+    new Chart(ctx, {
       type: "doughnut",
       data: {
         labels: labels,
@@ -30,10 +25,7 @@ export default {
           {
             label: "My First Dataset",
             data: amounts,
-            backgroundColor: [...amounts].map(
-              (label) =>
-                "#" + ((Math.random() * 0xffffff) << 0).toString(16).padStart(6, "0")
-            ),
+            backgroundColor: colors,
             hoverOffset: 4,
           },
         ],

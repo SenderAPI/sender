@@ -15,12 +15,12 @@
         </div>
 
         <div class="flex gap-4 items-center" v-if="user?.Picture">
-          <div class="hidden text-white gap-10 md:flex">
+          <!-- <div class="hidden text-white gap-10 md:flex">
             <a @click="router.push({ name: 'Home' })" class="cursor-pointer">Reporte</a>
             <a @click="router.push({ name: 'Profile' })" class="cursor-pointer"
               >Proyeccion</a
             >
-          </div>
+          </div> -->
           <div @click="toggleDropdown('dropdown-notification')">
             <icon-bell
               style="font-size: 1.5em"
