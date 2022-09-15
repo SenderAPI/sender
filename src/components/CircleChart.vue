@@ -1,6 +1,6 @@
 <template>
   <div
-    class="animation-card mt-5 flex justify-center"
+    class="animation-card mt-5 mb-5 flex justify-center"
     style="width: 100%; height: fit-content"
   >
     <canvas :id="id" class="circle"></canvas>
