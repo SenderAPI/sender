@@ -42,7 +42,7 @@
             class="grid xl:grid-cols-2 grid-cols-1 gap-x-5 gap-y-0 justify-center mt-5"
           >
             <Categories />
-            <CircleChart :id="1" :data="reportCategories" />
+            <CircleChart :id="1" :data="reportCategories" v-if="reportCategories" />
           </div>
         </div>
       </div>
