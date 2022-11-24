@@ -1,11 +1,13 @@
 <template>
-  <div class="flex justify-center items-center h-full">
+  <div class="flex justify-center items-center h-full bgLogin bg-secondary">
     <div
-      class="glass xl:w-2/5 md:w-3/5 sm:w-4/5 w-11/12 items-center flex justify-center flex-col items-center h-3/5"
+      class="glass container-card xl:w-3/12 md:w-3/5 sm:w-4/5 w-11/12 flex justify-start flex-col items-center h-3/5"
     >
-      <h1 class="text-black font-bold text-3xl py-5" title="">Login</h1>
-      <h2 class="text-black text-xl">With social media account</h2>
-      <div class="xl:w-3/5 md:w-3/5 sm:w-11/12 w-full p-10">
+    <div>
+      <h1 class="text-secondary font-bold text-3xl py-10" title="">Agent Login</h1>
+      <h2 class="text-dark text-xl font-bold px-10 text-start">Hey, Enter in your google  account to get  sign in to your account.</h2>
+    </div>
+      <div class="w-full p-10 mt-32 bg">
         <a :href="getGoogleUrl()" class="auth-btn google-auth">
           <img src="../assets/google.svg" alt="Google Logo" />
           <span>Google</span>
@@ -18,6 +20,7 @@
 <script>
 export default {
   name: "Login",
+  data() { return{}},
   methods: {
     getGoogleUrl() {
       const rootUrl = `https://accounts.google.com/o/oauth2/v2/auth`;
@@ -46,12 +49,22 @@ export default {
 };
 </script>
 <style>
-.social-auth {
-  max-width: 27rem;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+.bgLogin{
+  background: url('./../assets/background.png') no-repeat;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.container-card{
+  transition: 1s all;
+}
+.container-card:hover{
+  box-shadow: 0 4px 60px rgba(0, 0, 0, 0.1);
+  transform: scale(1.02);
+  transition: .2s all;
 }
 .glass {
   /* From https://css.glass */
@@ -89,4 +102,5 @@ export default {
 .auth-btn.google-auth {
   margin-bottom: 1.5rem;
 }
+
 </style>

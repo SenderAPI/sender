@@ -1,22 +1,30 @@
 <template>
   <div
-    class="animation-card mt-5 mb-5 flex justify-center"
-    style="width: 100%; height: fit-content"
+    class="animation-card flex justify-center items-center"
+    style="height: 17rem"
   >
     <canvas :id="id" class="circle"></canvas>
+    <div class="absolute z-10">
+      <h1 class="font-extrabold text-white text-5xl">1000</h1>
+      <span class="font-extrabold text-darkness text-2xl">remaing</span>
+    </div>
   </div>
 </template>
 <script>
 export default {
   props: {
     id: String,
-    data: null,
+  },
+  data(){
+    return{
+      data: [{name:"hola", amount:10,color:"red"}]
+    }
   },
   mounted() {
     var ctx = document.getElementById(this.id).getContext("2d");
-    const labels = this.data.map((category) => category.name);
-    const amounts = this.data.map((category) => category.amount);
-    const colors = this.data.map((category) => category.color);
+    const labels = [" Messages sent", " Messages remaining"];
+    const amounts = [100,1000]
+    const colors = ["#046AC8", "#fff"]
     new Chart(ctx, {
       type: "doughnut",
       data: {
@@ -26,16 +34,19 @@ export default {
             label: "My First Dataset",
             data: amounts,
             backgroundColor: colors,
-            hoverOffset: 4,
+            hoverOffset: 0,
           },
         ],
       },
       options: {
+        cutout:98,
         plugins: {
           legend: {
             display: false,
           },
           tooltip: {
+            titleAlign: 'center',
+            bodyAlign: 'center',
             backgroundColor: "#fff",
             titleFont: {
               weight: "bold",
@@ -43,11 +54,11 @@ export default {
             },
             bodyFont: {
               weight: "bold",
-              size: 20,
+              size: 15,
             },
             callbacks: {
               label: function (tooltipItem) {
-                return tooltipItem.label + " $" + Math.abs(tooltipItem.raw);
+                return Math.abs(tooltipItem.raw) + tooltipItem.label;
               },
               labelColor: function (context) {
                 return {
@@ -58,7 +69,7 @@ export default {
                 };
               },
               labelTextColor: function (context) {
-                return "#000";
+                return "#007BED";
               },
             },
           },
@@ -71,7 +82,7 @@ export default {
               font: {
                 size: 10,
               },
-              color: "#BFBEE0",
+              color: "#fff",
             },
             grid: {
               drawBorder: false,
@@ -115,8 +126,6 @@ export default {
 <style>
 .circle {
   border-radius: 1rem;
-  background-color: #233d62;
   padding: 1rem;
-  height: 100%;
 }
 </style>

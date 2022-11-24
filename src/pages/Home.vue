@@ -1,134 +1,114 @@
 <template>
-  <div class="mt-10 mx-5">
-    <div class="flex justify-between w-full flex-col xl:flex-row xl:gap-0">
-      <div class="w-full grid xl:grid-cols-2 grid-cols-1 gap-x-2 gap-y-5">
-        <div class="flex flex-col gap-5 h-auto" style="height: fit-content">
-          <div style="height: fit-content">
-            <Chart
-              class="animation-card"
-              :text="'Total'"
-              :data="reportMonths"
-              :total="total"
-              v-if="reportMonths"
-            />
-          </div>
-
-          <div style="height: fit-content">
-            <BarChart
-              class="animation-card"
-              :color="'#e63946'"
-              :id="'expense'"
-              :text="'Egresos'"
-              :data="reportExpenses"
-              v-if="reportExpenses"
-              :total="totalExpenses"
-            />
-          </div>
+  <div class="flex justify-center items-center h-full bgHome bg-secondary w-screen gap-10 font-sans tracking-wide">
+      <div class="glass-container w-1/5 h-5/6 p-5">
+        <div class="flex mt-5 items-center gap-5" v-if="isLogged && user?.Picture">
+          <img
+                class="p-1 w-10 h-10 rounded-full ring-2 ring-gray-500"
+                :src="user.Picture"
+                
+                referrerpolicy="no-referrer"
+                id="dropdown-profile"
+              />
+          <span class="text-white font-semibold text-xl">Daniel Sarmiento</span>
         </div>
 
-        <div class="flex flex-col" style="height: fit-content">
-          <div>
-            <BarChart
-              v-if="reportEntries"
-              class="animation-card"
-              :color="'#06d6a0'"
-              :id="'entries'"
-              :text="'Ingresos'"
-              :data="reportEntries"
-              :total="totalEntries"
-            />
-          </div>
-          <div
-            class="grid xl:grid-cols-2 grid-cols-1 gap-x-5 gap-y-0 justify-center mt-5"
-          >
-            <Categories />
-            <CircleChart :id="1" :data="reportCategories" v-if="reportCategories" />
-          </div>
+        <div class="flex flex-col items-start text-white gap-10 font-semibold px-5 py-10 text-xl">
+          <a class="cursor-pointer hover:text-darkness">Home</a>
+          <a class="cursor-pointer hover:text-darkness">Send sms</a>
+          <a class="cursor-pointer hover:text-darkness">History credits</a>
+          <a class="cursor-pointer hover:text-darkness">History sms</a>
+          <a class="cursor-pointer hover:text-darkness">Purchase credits</a>
+          <a class="cursor-pointer hover:text-darkness">Documentation API</a>
         </div>
       </div>
-
-      <div style="min-width: 19%">
-        <h2 class="font-bold text-xl text-center text-white">Historial transacciones</h2>
-        <Transactions :transactions="transactions" />
-        <h2 class="font-bold text-xl text-center mt-5 text-white">Transacciones fijas</h2>
-        <Transactions :transactions="transactionsFixed" />
+      <div class="w-4/6 h-5/6">
+      <div class="flex flex-col h-full w-full gap-10">
+        <div class="flex gap-20">
+          <div class="flex justify-center flex-col w-3/6  glass-container gap-2 p-10 container-card">
+            <span class="text-white text-4xl font-bold">Amount</span>
+            <div class="flex justify-center items-center gap-2">
+              <span class="text-white text-3xl font-bold">$</span>
+            <h1 class="text-white text-7xl font-bold">12,2</h1>
+            </div>
+            <a href="" class="text-darkness font-semibold">View history credits</a>
+          </div>
+          <div class="flex flex-col w-3/6  glass-container gap-2 p-10 container-card">
+            <div>
+              <CircleChart
+                class="animation-card"  
+                :id="'entries'"
+              />
+            </div>
+            <a href="" class="text-white font-semibold">Remaining messages</a>
+          </div>
+        </div>
+        <div class="flex flex-col w-full  glass-container gap-2 p-10 container-card">
+          <h1>Hola</h1>
+        </div>
       </div>
-    </div>
+      </div>
   </div>
 </template>
 <script setup>
 import CircleChart from "../components/CircleChart.vue";
-import BarChart from "../components/BarChart.vue";
-import Categories from "../components/Categories.vue";
 </script>
-
 <script>
 import store from "../store/store.js";
-import Chart from "../components/Chart.vue";
-
-import Transactions from "../components/Transactions.vue";
 export default {
-  data() {
-    return {};
+  name: "Home",
+  data() { return { user:{} }},
+  components:[CircleChart],
+  methods: {
+    logout() {
+      document.cookie =
+        "access_token" + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+      this.dropProfileOpen = false;
+      this.$store.commit("setIsLogged", false);
+      this.$store.commit("setUser", null);
+      this.$store.commit("setWallet", null);
+      router.push({ name: "Login" });
+    },
   },
   computed: {
-    reportMonths() {
-      return store.getters.reportMonths();
+    isLogged() {
+      return store.getters.isLogged();
     },
-    reportEntries() {
-      return store.getters.reportEntries();
-    },
-    reportExpenses() {
-      return store.getters.reportExpenses();
-    },
-    transactions() {
-      return store.getters.transactions();
-    },
-    reportCategories() {
-      return store.getters.reportCategories();
-    },
-    transactionsFixed() {
-      return store.getters.transactionsFixed();
-    },
-    total() {
-      return [...store.getters.transactions()].length
-        ? [...store.getters.transactions()]
-            .map((t) => t.amount)
-            .reduce((a, b) => a + b, 0)
-        : 0;
-    },
-    totalExpenses() {
-      return [...store.getters.reportExpenses()]
-        .map((t) => t.total)
-        .reduce((a, b) => a + b, 0);
-    },
-    totalEntries() {
-      return [...store.getters.reportEntries()]
-        .map((t) => t.total)
-        .reduce((a, b) => a + b, 0);
+    user() {
+      return store.getters.user();
     },
   },
-  mounted() {
-    store.dispatch("getCategories");
-    store.dispatch("getWallet");
-    store.dispatch("getMoves");
-    store.dispatch("getAllTransactions");
-    store.dispatch("getAllTransactionsFixed");
-    store.dispatch("getReportMonths");
-    store.dispatch("getReportCategories");
-  },
+  mounted() {},
 };
 </script>
-
 <style>
-.animation-card {
-  transition: 0.5s all;
-  background-color: #1a2e4b;
-  border-radius: 1rem;
+#dropdown-profile{
+  width: 5rem;
+  height: 5rem;
 }
-.animation-card:hover {
-  transform: scale(1.05);
-  transition: 0.5s all;
-  box-shadow: 0px 0px 14px -5px #111e30;
+.bgHome{
+  background: url('./../assets/bgHome.png') no-repeat;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.glass-container{
+  /* From https://css.glass */
+background: rgba(255, 255, 255, 0.19);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(179, 179, 179, 0.1);
+backdrop-filter: blur(7.6px);
+-webkit-backdrop-filter: blur(7.6px);
+border: 1px solid rgba(255, 255, 255, 0.05);
+}
+.container-card{
+  transition: 1s all;
+}
+.container-card:hover{
+  box-shadow: 0 4px 60px rgba(223, 223, 223, 0.1);
+  transform: scale(1.02);
+  transition: .2s all;
 }
 </style>

@@ -16,15 +16,16 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+        sans: ['IBM Plex Sans', ...defaultTheme.fontFamily.sans],
       },
       colors: {
         primary: "#1d3557",
-        secondary: "#edf2f4",
-        dark: "#1a2e4b",
+        secondary: "#63B4FF",
+        dark: "#046AC8",
         danger: "#e63946",
         success: "#06d6a0",
-        light: "#233d62"
+        light: "#233d62",
+        darkness: "#007BED"
       }
     },
 
