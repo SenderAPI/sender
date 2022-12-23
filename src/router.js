@@ -6,6 +6,7 @@ import Default from "./layouts/Default.vue";
 import Login from "./pages/Login.vue";
 import Home from "./pages/Home.vue";
 import PurchaseCredits from "./pages/PurchaseCredits.vue";
+import HistoryCredits from "./pages/HistoryCredits.vue";
 import SendSms from "./pages/SendSms.vue";
 import store from './store/store'
 
@@ -35,6 +36,11 @@ const routes = [{
         path: "purchase-credits",
         name: "PurchaseCredits",
         component: PurchaseCredits
+      },
+      {
+        path: "history-credits",
+        name: "historyCredits",
+        component: HistoryCredits
       }
     ]
   },

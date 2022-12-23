@@ -9,7 +9,9 @@
           <span class="text-white text-3xl font-bold">$</span>
           <h1 class="text-white text-7xl font-bold">{{ wallet?.Amount }}</h1>
         </div>
-        <a href="" class="text-darkness font-semibold">View history credits</a>
+        <router-link to="/history-credits" class="text-darkness font-semibold"
+          >View history credits</router-link
+        >
       </div>
       <div class="flex flex-col w-3/6 glass-container gap-2 p-10 container-card">
         <div>

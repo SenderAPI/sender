@@ -49,6 +49,13 @@
         <div id="card-element">
           <!-- a Stripe Element will be inserted here. -->
         </div>
+        <div class="mt-5" unselectable="on">
+          <p
+            class="font-medium text-sm flex justify-center items-center gap-1 text-gray-400"
+          >
+            Powered by <span class="font-extrabold text-xl text-indigo-700">Stripe</span>
+          </p>
+        </div>
       </div>
     </div>
   </section>
@@ -62,9 +69,9 @@ export default {
   data() {
     return {
       stripe: null,
-      cardNumberElement: "4242 4242 4242 4242",
-      cardExpiryElement: "12/34",
-      cardCVCElement: "567",
+      cardNumberElement: "",
+      cardExpiryElement: "",
+      cardCVCElement: "",
       stripeValidationError: "",
       amount: 1,
       email: "",

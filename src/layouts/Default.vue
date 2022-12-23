@@ -20,7 +20,9 @@
         <router-link class="cursor-pointer hover:text-darkness" to="/send-sms"
           >Send sms</router-link
         >
-        <a class="cursor-pointer hover:text-darkness">History credits</a>
+        <router-link class="cursor-pointer hover:text-darkness" to="/history-credits"
+          >History credits</router-link
+        >
         <a class="cursor-pointer hover:text-darkness">History sms</a>
         <router-link class="cursor-pointer hover:text-darkness" to="/purchase-credits"
           >Purchase credits</router-link
