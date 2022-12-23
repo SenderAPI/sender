@@ -25,7 +25,7 @@ module.exports = {
         danger: "#e63946",
         success: "#06d6a0",
         light: "#233d62",
-        darkness: "#007BED"
+        darkness: "#007BED",
       }
     },
 

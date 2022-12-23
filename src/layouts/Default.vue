@@ -33,13 +33,12 @@
       </div>
     </div>
     <div class="w-4/6 h-5/6">
-      <router-view />
+      <router-view class="h-full w-full" />
     </div>
   </div>
 </template>
 <script setup>
 import DashBoard from "../components/DashBoard.vue";
-import CircleChart from "../components/CircleChart.vue";
 </script>
 <script>
 import store from "../store/store.js";
@@ -48,7 +47,6 @@ export default {
   data() {
     return {};
   },
-  components: [CircleChart],
   methods: {
     logout() {
       document.cookie =
