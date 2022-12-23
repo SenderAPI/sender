@@ -7,6 +7,7 @@ import Login from "./pages/Login.vue";
 import Home from "./pages/Home.vue";
 import PurchaseCredits from "./pages/PurchaseCredits.vue";
 import HistoryCredits from "./pages/HistoryCredits.vue";
+import HistorySms from "./pages/HistorySms.vue";
 import SendSms from "./pages/SendSms.vue";
 import store from './store/store'
 
@@ -41,7 +42,13 @@ const routes = [{
         path: "history-credits",
         name: "historyCredits",
         component: HistoryCredits
-      }
+      },
+      {
+        path: "history-sms",
+        name: "historySms",
+        component: HistorySms
+      },
+
     ]
   },
 ];

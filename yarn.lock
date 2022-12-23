@@ -682,6 +682,11 @@ magic-string@^0.25.7:
   dependencies:
     sourcemap-codec "^1.4.8"
 
+material-icons@^1.13.1:
+  version "1.13.1"
+  resolved "https://registry.yarnpkg.com/material-icons/-/material-icons-1.13.1.tgz#27de79bf68a4db0a1caec099d4f54ba658770e89"
+  integrity sha512-6EwhlEa4rwydNSWw11ig1oz/h/KcarJXn4n50Wd69v5Eh026Y6xBo9zLPeX4iF8+qUZV862X0AUUA0m0VaihWg==
+
 merge-stream@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/merge-stream/-/merge-stream-2.0.0.tgz#52823629a14dd00c9770fb6ad47dc6310f2c1f60"
@@ -1096,6 +1101,11 @@ vue@^3.2.25:
     "@vue/runtime-dom" "3.2.37"
     "@vue/server-renderer" "3.2.37"
     "@vue/shared" "3.2.37"
+
+vuesax3@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/vuesax3/-/vuesax3-4.1.1.tgz#70cc8063765184f6dcb8b9ebaac571091a81ec0b"
+  integrity sha512-Didd5Lf9cuxBwUBizKlsjQIQgq5WJAC+rHGXW+9H+tdZXSzEJHjwkVhxasxviMHKsIyluHzMuFb1bLX4ffk4Eg==
 
 vuex@^4.0.2:
   version "4.0.2"

@@ -1,7 +1,13 @@
 <template>
   <section class="container w-full h-full flex justify-center items-center flex-col">
     <div class="bg-white p-20 rounded-xl">
-      <h5 class="text-primary font-semibold text-xl">Buy Credits</h5>
+      <h5 class="text-primary font-semibold text-xl">
+        Buy Credits with your Credit Card
+      </h5>
+      <p class="w-96 text-center font-medium text-sm">
+        Payment management system with stripe, feel safe to put your credentials, any
+        inconvenience contact our customer service means.
+      </p>
 
       <div id="card-errors" role="alert">{{ stripeValidationError }}</div>
       <div class="mt-4 mb-4 grid justify-items-center">

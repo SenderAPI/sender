@@ -2,20 +2,20 @@
   <div>
     <vs-table max-items="3" pagination :data="credits" search>
       <template #thead>
-        <vs-th> Amount </vs-th>
-        <vs-th> Status </vs-th>
+        <vs-th> Number Phone </vs-th>
+        <vs-th> Message </vs-th>
         <vs-th> Date </vs-th>
       </template>
 
       <template v-slot="{ data }">
         <vs-tr :key="indextr" v-for="(tr, indextr) in data">
           <vs-td :data="data[indextr].amount">
-            <p class="font-bold text-2xl text-darkness">${{ data[indextr].amount }}</p>
+            <p class="font-bold text-2xl text-darkness">{{ data[indextr].phone }}</p>
           </vs-td>
 
           <vs-td :data="data[indextr].status">
             <p class="font-bold text-xl text-gray-400">
-              {{ data[indextr].status }}
+              {{ data[indextr].message }}
             </p>
           </vs-td>
 
@@ -36,23 +36,24 @@ export default {
     return {
       credits: [
         {
-          amount: 1,
-          status: "success",
+          phone: "+57 3223685793",
+          message:
+            "Hola este es un ejemplo daw dwadwa d djijdwaijdwiadwa dwadwad dwa dwadwa daw",
           date: "10 July 2022",
         },
         {
-          amount: 3,
-          status: "pending payment",
-          date: "12 July 2022",
+          phone: "+57 3223685793",
+          message: "Hola este es un ejemplo",
+          date: "10 July 2022",
         },
         {
-          amount: 100,
-          status: "error",
-          date: "15 July 2022",
+          phone: "+57 3223685793",
+          message: "Hola este es un ejemplo",
+          date: "10 July 2022",
         },
         {
-          amount: 10000,
-          status: "error",
+          phone: "+57 3223685793",
+          message: "Hola este es un ejemplo",
           date: "10 July 2022",
         },
       ],
@@ -119,5 +120,15 @@ div.vs-con-tbody.vs-table--tbody > table > tr > td:nth-child(1) {
 }
 div.vs-con-tbody.vs-table--tbody > table > tr > td:nth-child(3) {
   border-radius: 0 1rem 1rem 0 !important;
+}
+
+div.vs-con-tbody.vs-table--tbody > table > tr > td:nth-child(2) > span > p {
+  width: 18rem !important;
+  align-items: center;
+}
+div.vs-con-tbody.vs-table--tbody > table > tr > td > span {
+  justify-content: center !important;
+  text-align: center !important;
+  display: flex !important;
 }
 </style>

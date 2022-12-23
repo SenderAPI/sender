@@ -23,7 +23,9 @@
         <router-link class="cursor-pointer hover:text-darkness" to="/history-credits"
           >History credits</router-link
         >
-        <a class="cursor-pointer hover:text-darkness">History sms</a>
+        <router-link class="cursor-pointer hover:text-darkness" to="/history-sms"
+          >History sms</router-link
+        >
         <router-link class="cursor-pointer hover:text-darkness" to="/purchase-credits"
           >Purchase credits</router-link
         >
