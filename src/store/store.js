@@ -18,13 +18,15 @@ export default createStore({
     setUser(state, user) {
       state.user = user;
     },
-   
+    setWallet(state, wallet) {
+      state.wallet = wallet;
+    }
   },
 
   getters: {
     isLogged: (state) => () => state.isLogged,
     user: (state) => () => state.user,
-  
+    wallet: (state) => () => state.wallet
   },
   actions: {
     async me({
@@ -39,6 +41,23 @@ export default createStore({
         })
         data = JSON.parse(data.result).data
         commit("setUser", data);
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    async getWallet({
+      commit,
+      state
+    }) {
+      try {
+        let {
+          data
+        } = await axios.get('/gilito/wallet', {
+          payload: {}
+        })
+        data = JSON.parse(data.result)
+        console.log(data);
+        commit("setWallet", data);
       } catch (error) {
         console.log(error)
       }
@@ -74,6 +93,7 @@ axios.interceptors.request.use(request => {
 
 axios.defaults.baseURL =
   import.meta.env.VITE_BASE_URL
+
 
 function getCookie(cname) {
   var name = cname + "=";

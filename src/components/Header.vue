@@ -19,19 +19,12 @@ import router from "../router.js";
 
 export default {
   name: "Header",
-  data() {
-  },
-  methods: {
-  },
-  computed: {
-  },
-  mounted() {}
 };
 </script>
 
 <style>
-.header{
-  position: relative; 
+.header {
+  position: relative;
   z-index: 1000;
 }
 #app {

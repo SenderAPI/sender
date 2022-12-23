@@ -2,23 +2,21 @@
   <div>
     <ComponentHeader style="position: absolute; top: 0; left: 0; right: 0" />
     <div style="height: 100vh; padding-top: 3rem" class="container-scroll">
-      <router-view />
+      <div>
+        <router-view />
+      </div>
       <p class="text-white p-10">@Backsoul copyright 2022</p>
     </div>
   </div>
 </template>
 
 <script>
+import Sidebar from "./components/Sidebar.vue";
 export default {
   name: "App",
-  data() {
-    return {};
-  },
-  methods: {
-  },
-  computed: {
-  },
-  components: {},
+  methods: {},
+  computed: {},
+  components: [Sidebar],
 };
 </script>
 
@@ -29,5 +27,4 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
 }
-
 </style>

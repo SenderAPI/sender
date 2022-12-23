@@ -2,9 +2,10 @@ import _ from 'lodash';
 
 export default {
   install(app) {
-    const componentFiles = import.meta.globEager(
-      './components/*.vue'
-    );
+    const componentFiles =
+      import.meta.globEager(
+        './components/*.vue'
+      );
 
     Object.entries(componentFiles).forEach(([path, m]) => {
       const componentName = _.upperFirst(

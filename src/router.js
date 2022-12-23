@@ -2,8 +2,11 @@ import {
   createRouter,
   createWebHistory
 } from "vue-router";
-import Home from "./pages/Home.vue";
+import Default from "./layouts/Default.vue";
 import Login from "./pages/Login.vue";
+import Home from "./pages/Home.vue";
+import PurchaseCredits from "./pages/PurchaseCredits.vue";
+import SendSms from "./pages/SendSms.vue";
 import store from './store/store'
 
 const routes = [{
@@ -17,8 +20,23 @@ const routes = [{
   },
   {
     path: "/",
-    name: "Home",
-    component: Home
+    component: Default,
+    children: [{
+        path: "/",
+        name: "home",
+        component: Home
+      },
+      {
+        path: "send-sms",
+        name: "sendSms",
+        component: SendSms
+      },
+      {
+        path: "purchase-credits",
+        name: "PurchaseCredits",
+        component: PurchaseCredits
+      }
+    ]
   },
 ];
 

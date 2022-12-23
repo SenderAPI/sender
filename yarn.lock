@@ -1076,6 +1076,16 @@ vue-router@4:
   dependencies:
     "@vue/devtools-api" "^6.1.4"
 
+vue-stripe-elements-plus@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/vue-stripe-elements-plus/-/vue-stripe-elements-plus-1.0.3.tgz#1a19aa49e8e7569c41972a3a0faf273e01ed9f3f"
+  integrity sha512-Aq61f8KxrAe0l+eL5uZc1LePogfrPpAtjm/HqFDFYydRK2z7jl8Rb/IDTKeQi4Z+Tt+kX76WNtHWpxtt9chYSQ==
+
+vue-stripe-js@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/vue-stripe-js/-/vue-stripe-js-1.0.1.tgz#7eba90a279d4ef466a5beb16d8ffe0633b62e52a"
+  integrity sha512-f2u+YkN42uHrUZbYiiqEQ+DtCyPQgJ/BdzU35EwhFqJghS6k2n8tw/VhYm35TjLsxJE+tYO7/pBUdTS+Xu5Rrw==
+
 vue@^3.2.25:
   version "3.2.37"
   resolved "https://registry.yarnpkg.com/vue/-/vue-3.2.37.tgz#da220ccb618d78579d25b06c7c21498ca4e5452e"
