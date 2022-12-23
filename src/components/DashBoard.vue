@@ -7,7 +7,7 @@
         <span class="text-white text-4xl font-bold">Amount</span>
         <div class="flex justify-center items-center gap-2">
           <span class="text-white text-3xl font-bold">$</span>
-          <h1 class="text-white text-7xl font-bold">{{ wallet?.amount }}</h1>
+          <h1 class="text-white text-7xl font-bold">{{ wallet?.Amount }}</h1>
         </div>
         <a href="" class="text-darkness font-semibold">View history credits</a>
       </div>

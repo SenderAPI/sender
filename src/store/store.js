@@ -52,10 +52,10 @@ export default createStore({
       try {
         let {
           data
-        } = await axios.get('/gilito/wallet', {
+        } = await axios.get('/gilito/wallet/get', {
           payload: {}
         })
-        data = JSON.parse(data.result)
+        data = JSON.parse(data.result).data
         console.log(data);
         commit("setWallet", data);
       } catch (error) {
