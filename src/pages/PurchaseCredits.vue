@@ -6,13 +6,9 @@
       <div id="card-errors" role="alert">{{ stripeValidationError }}</div>
       <div class="mt-4 mb-4 grid justify-items-center">
         <form action="" method="post" class="w-72 sm:w-96 space-y-2">
-          <input
-            type="text"
-            placeholder="Email"
-            class="w-full border p-2 rounded"
-            v-model="email"
-            disabled
-          />
+          <div class="w-full border p-2 rounded bg-gray-300">
+            <p>{{ user?.Email }}</p>
+          </div>
           <select
             name="amount"
             id="amount"
@@ -36,7 +32,16 @@
         <button
           @click="placeOrderButtonPressed"
           type="submit"
+          v-if="!paymentInProcess"
           class="bg-primary p-2.5 text-white rounded-md mt-2 w-72 sm:w-96"
+        >
+          Pay
+        </button>
+
+        <button
+          class="bg-slate-500 p-2.5 text-white rounded-md mt-2 w-72 sm:w-96"
+          v-if="paymentInProcess"
+          disabled
         >
           Pay
         </button>
@@ -63,6 +68,7 @@ export default {
       stripeValidationError: "",
       amount: 1,
       email: "",
+      paymentInProcess: false,
     };
   },
   mounted() {
@@ -87,31 +93,32 @@ export default {
       this.cardNumberElement.on("change", this.setValidationError);
       this.cardExpiryElement.on("change", this.setValidationError);
       this.cardCvcElement.on("change", this.setValidationError);
-      this.email = this.user.Email;
     },
 
     setValidationError(event) {
       this.stripeValidationError = event.error ? event.error.message : "";
     },
     placeOrderButtonPressed() {
-      this.stripe.createToken(this.cardNumberElement).then((result) => {
-        if (result.error) {
-          this.stripeValidationError = result.error.message;
-        } else {
-          var stripeObject = {
-            Amount: this.amount,
-            Email: this.email,
-            Token: result.token.id,
-          };
-          console.log(result);
-          this.payRequest(stripeObject);
-        }
-      });
+      if (this.user.Email) {
+        this.stripe.createToken(this.cardNumberElement).then((result) => {
+          if (result.error) {
+            this.stripeValidationError = result.error.message;
+          } else {
+            var stripeObject = {
+              Amount: this.amount,
+              Email: this.user.Email,
+              Token: result.token.id,
+            };
+            this.payRequest(stripeObject);
+            this.paymentInProcess = true;
+          }
+        });
+      }
     },
     async payRequest(stripeObject) {
       try {
         axios
-          .post("http://localhost:8080/mammon/create", {
+          .post("http://localhost:8080/gilito/transaction/create", {
             ...stripeObject,
           })
           .then((result) => {
