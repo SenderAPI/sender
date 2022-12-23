@@ -70,6 +70,7 @@
 <script>
 import store from "../store/store.js";
 import axios from "axios";
+import router from "../router.js";
 
 export default {
   data() {
@@ -131,11 +132,14 @@ export default {
     async payRequest(stripeObject) {
       try {
         axios
-          .post("http://localhost:8080/gilito/transaction/create", {
+          .post("http://localhost:8080/gilito/credits/create", {
             ...stripeObject,
           })
-          .then((result) => {
-            console.log(result.data);
+          .then(({ data }) => {
+            let result = JSON.parse(data.result).status;
+            if (result == "success") {
+              this.$router.push({ path: "history-credits" });
+            }
           });
       } catch (error) {
         console.log(error);

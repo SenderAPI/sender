@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="credits?.length">
     <vs-table max-items="3" pagination :data="credits" search>
       <template #thead>
         <vs-th> Amount </vs-th>
@@ -9,8 +9,8 @@
 
       <template v-slot="{ data }">
         <vs-tr :key="indextr" v-for="(tr, indextr) in data">
-          <vs-td :data="data[indextr].amount">
-            <p class="font-bold text-2xl text-darkness">${{ data[indextr].amount }}</p>
+          <vs-td :data="data[indextr].Amount">
+            <p class="font-bold text-2xl text-darkness">${{ data[indextr].Amount }}</p>
           </vs-td>
 
           <vs-td :data="data[indextr].status">
@@ -21,7 +21,7 @@
 
           <vs-td :data="data[indextr].date">
             <p class="font-bold text-xl text-darkness">
-              {{ data[indextr].date }}
+              {{ getFormattedDate(data[indextr].CreatedAt) }}
             </p>
           </vs-td>
         </vs-tr>
@@ -31,32 +31,29 @@
 </template>
 
 <script>
+import store from "../store/store.js";
+
 export default {
   data() {
-    return {
-      credits: [
-        {
-          amount: 1,
-          status: "success",
-          date: "10 July 2022",
-        },
-        {
-          amount: 3,
-          status: "pending payment",
-          date: "12 July 2022",
-        },
-        {
-          amount: 100,
-          status: "error",
-          date: "15 July 2022",
-        },
-        {
-          amount: 10000,
-          status: "error",
-          date: "10 July 2022",
-        },
-      ],
-    };
+    return {};
+  },
+  computed: {
+    credits() {
+      return store.getters.credits;
+    },
+  },
+  mounted() {
+    store.dispatch("getCredits");
+  },
+  methods: {
+    getFormattedDate(date) {
+      date = new Date(date);
+      let year = date.getFullYear();
+      let month = (1 + date.getMonth()).toString().padStart(2, "0");
+      let day = date.getDate().toString().padStart(2, "0");
+
+      return month + "/" + day + "/" + year;
+    },
   },
 };
 </script>

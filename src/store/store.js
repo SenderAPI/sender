@@ -10,6 +10,7 @@ export default createStore({
     isLogged: false,
     user: {},
     wallet: null,
+    credits: []
   },
   mutations: {
     setIsLogged(state, py) {
@@ -20,13 +21,17 @@ export default createStore({
     },
     setWallet(state, wallet) {
       state.wallet = wallet;
+    },
+    setCredits(state, credits) {
+      state.credits = credits;
     }
   },
 
   getters: {
     isLogged: (state) => () => state.isLogged,
     user: (state) => () => state.user,
-    wallet: (state) => () => state.wallet
+    wallet: (state) => () => state.wallet,
+    credits: (state) => state.credits
   },
   actions: {
     async me({
@@ -56,8 +61,23 @@ export default createStore({
           payload: {}
         })
         data = JSON.parse(data.result).data
-        console.log(data);
         commit("setWallet", data);
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    async getCredits({
+      commit,
+      state
+    }) {
+      try {
+        let {
+          data
+        } = await axios.get('/gilito/credits/get', {
+          payload: {}
+        })
+        data = JSON.parse(data.result).data
+        commit("setCredits", data);
       } catch (error) {
         console.log(error)
       }
