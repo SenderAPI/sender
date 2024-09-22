@@ -61,6 +61,7 @@ export default createStore({
           payload: {}
         })
         data = JSON.parse(data.result).data
+        console.log("wallet: ", data);
         commit("setWallet", data);
       } catch (error) {
         console.log(error)
@@ -77,6 +78,7 @@ export default createStore({
           payload: {}
         })
         data = JSON.parse(data.result).data
+        console.log("credits: ", data);
         commit("setCredits", data);
       } catch (error) {
         console.log(error)

@@ -131,6 +131,8 @@ export default {
     },
     async payRequest(stripeObject) {
       try {
+        stripeObject.Amount = stripeObject.Amount.toString();
+        console.log("stripeObject: ", stripeObject)
         axios
           .post("http://localhost:8080/gilito/credits/create", {
             ...stripeObject,

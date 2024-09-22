@@ -1,5 +1,5 @@
 <template>
-  <div v-if="credits?.length">
+  <div>
     <vs-table max-items="3" pagination :data="credits" search>
       <template #thead>
         <vs-th> Amount </vs-th>

@@ -4,7 +4,9 @@
       class="glass container-card xl:w-3/12 md:w-3/5 sm:w-4/5 w-11/12 flex justify-start flex-col items-center h-3/5"
     >
       <div>
-        <h1 class="text-secondary font-bold text-3xl py-10" title="">Agent Login</h1>
+        <h1 class="text-secondary font-bold text-3xl py-10" title="">
+          Agent Login
+        </h1>
         <h2 class="text-dark text-xl font-bold px-10 text-start">
           Hey, Enter in your google account to get sign in to your account.
         </h2>
@@ -58,14 +60,6 @@ export default {
   top: 0;
   left: 0;
   right: 0;
-}
-.container-card {
-  transition: 1s all;
-}
-.container-card:hover {
-  box-shadow: 0 4px 60px rgba(0, 0, 0, 0.1);
-  transform: scale(1.02);
-  transition: 0.2s all;
 }
 .glass {
   /* From https://css.glass */
