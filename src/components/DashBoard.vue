@@ -4,13 +4,13 @@
       <div
         class="flex justify-center flex-col w-3/6 glass-container gap-2 p-10 container-card"
       >
-        <span class="text-white text-4xl font-bold">Amount</span>
+        <span class="text-white text-4xl font-bold">Monto</span>
         <div class="flex justify-center items-center gap-2">
           <span class="text-white text-3xl font-bold">$</span>
           <h1 class="text-white text-7xl font-bold">{{ wallet?.Amount }}</h1>
         </div>
-        <router-link to="/history-credits" class="text-darkness font-semibold"
-          >View history credits</router-link
+        <router-link to="/history-credits" class="text-darkness font-semibold underline"
+          >Ver historial de creditos</router-link
         >
       </div>
       <div class="flex flex-col w-3/6 bg-white gap-2 p-10 container-card rounded-xl">

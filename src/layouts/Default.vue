@@ -10,26 +10,26 @@
           referrerpolicy="no-referrer"
           id="dropdown-profile"
         />
-        <span class="text-white font-semibold text-xl">{{ user.Name }}</span>
+        <span class="text-white font-semibold text-xl hover:cursor-pointer">{{ user.Name }}</span>
       </div>
 
       <div
         class="flex flex-col items-start text-white gap-10 font-semibold px-5 py-10 text-xl"
       >
-        <router-link class="cursor-pointer hover:text-darkness" to="/">Home</router-link>
-        <router-link class="cursor-pointer hover:text-darkness" to="/send-sms"
-          >Send sms</router-link
+        <router-link class="cursor-pointer hover:text-darkness hover:underline" to="/">Inicio</router-link>
+        <router-link class="cursor-pointer hover:text-darkness hover:underline" to="/send-sms"
+          >Enviar mensajes</router-link
         >
-        <router-link class="cursor-pointer hover:text-darkness" to="/history-credits"
-          >History credits</router-link
+        <router-link class="cursor-pointer hover:text-darkness hover:underline" to="/history-credits"
+          >Historial de pagos</router-link
         >
-        <router-link class="cursor-pointer hover:text-darkness" to="/history-sms"
-          >History sms</router-link
+        <router-link class="cursor-pointer hover:text-darkness hover:underline" to="/history-sms"
+          >Historial de mensajes</router-link
         >
-        <router-link class="cursor-pointer hover:text-darkness" to="/purchase-credits"
-          >Purchase credits</router-link
+        <router-link class="cursor-pointer hover:text-darkness hover:underline" to="/purchase-credits"
+          >Comprar creditos</router-link
         >
-        <a class="cursor-pointer hover:text-darkness">Documentation API</a>
+        <a class="cursor-pointer hover:text-darkness hover:underline">Documentacion</a>
       </div>
     </div>
     <div class="w-4/6 h-5/6">
